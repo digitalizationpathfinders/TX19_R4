@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TX19 - Clearance Certificate</title>
+        <link rel="stylesheet" href="styles/base.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-content">
+                <div class="brand">
+                    <img src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt="Government of Canada">
+                </div>
+                <a href="#" class="language-switch">Français</a>
+            </div>
+            <div class="portal-header">
+                <div class="content">
+                <div class="portal-branding">
+                    <div>
+                        <span class="heading">Canada Revenue Agency</span>
+                        <br>Represent a Client
+                    </div>
+                    <div>
+                        <span class="inline-flex" id="task-accountuser-type">
+                            <span class="material-icons">security</span>Trust client
+                        </span>
+                        <span class="uppercase" id="task-accountuser-name">
+                        </span>
+                    </div>
+                    
+                </div>
+                <div class="inline-flex">
+                    <span class="material-icons">account_circle</span>
+                    <span class="uppercase" id="task-rep-name"></span>
+                </div>
+                </div>
+            </div>
+        </header>
+        <main class="stepper">
+            <h1>TX19 - Asking for a clearance certificate</h1>
+            <section class="step active" id="step-0">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Before you begin</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+                        <p>A clearance certificate allows the legal representative to distribute assets without the risk of being held personally responsible for unpaid amounts of the person who died, estate, trust, or corporation might owe the CRA. </p>
+                        
+                        <button type="button" class="accordion">Types of documents you should have </button>
+                        <div class="accordion-content">
+                            <strong>For a testamentary trust:</strong>
+                            <ul>
+                                <li><strong>Taxpayer's will:</strong> A complete and signed copy of the will (with any codicils, renunciations, disclaimers, and probate documents, if applicable). If there is no will, provide an official document naming the legal representative
+                                </li>
+                                <li><strong>List of assets:</strong> A detailed list and description of assets that were owned by the person who died at the date of death, including:
+                                    <ul>
+                                        <li>Jointly held assets</li>
+                                        <li>Registered retirement savings plans (RRSP) and registered retirement income funds (including those with named beneficiaries)</li>
+                                        <li>Adjusted cost base (ACB) and fair market value (FMV) at the time of distribution</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Statement of distribution of assets:</strong> A statement showing how estate has been distributed so far, including:
+                                    <ul>
+                                        <li>A proposed plan for any holdback or residual amount/property</li>
+                                        <li>List of beneficiaries (non-cash only), including names, addresses and SINs or other tax identification numbers</li>
+                                    </ul>
+                                </li>
+                        
+                            </ul>
+                             <strong>For other types of trust:</strong>
+                            <ul>
+                                <li><strong>Trust agreement:</strong> A copy of the complete trust agreement including any amendments or documents for the trust</li>
+                          
+                            </ul>
+
+
+                            <p>If you have already submitted any of these documents, you do not need to send them again.</p>
+                        </div>
+                        <button class="btn btn-primary next-button" type="button">Begin</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="step" id="step-1">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Eligibility</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+                        <form id="step-1-form">
+                            <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                          
+                            <fieldset id="s1q1-fieldset" data-radio-group>
+                                <legend class="required-label"> What type of trust is this?
+                                    <a data-toggleLB="s1q1-lightbox">
+                                        <span class="material-icons">
+                                        help
+                                        </span>
+                                    </a>
+                                </legend>                    
+                                    
+
+                                <div class="group">
+                                    <input type="radio" id="s1q1-op1" name="s1q1" value="Inter vivos trust" data-toggle="s1q2-fieldset">
+                                    <label for="s1q1-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s1q1-op2" name="s1q1" value="Testamentary trust" data-toggle="s1q3-fieldset">
+                                    <label for="s1q1-op2"></label>
+                                </div>
+                                
+                            </fieldset>
+           
+         
+                            
+                            <fieldset id="s1q2-fieldset" class="hidden">
+                                <legend class="required-label"> Select the type of inter vivos trust.</legend>
+                                                     
+                                <select id="s1q2-dropdown" name="s1q2-dropdown" data-toggle="s1q4-fieldset">
+                                    <option value="" selected>(Select)</option>
+                                    <option value="Alter ego trust">Alter ego trust</option>
+                                    <option value="Personal trust">Personal trust</option>
+                                    <option value="Joint spousal or common-law partner trust">Joint spousal or common-law partner trust</option>
+                                    <option value="Unit trust">Unit trust</option>
+                                    <option value="Mutual funds trust">Mutual funds trust</option>
+                                    <option value="Bare trust">Bare trust</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                                              
+                            </fieldset>
+
+                            <fieldset id="s1q3-fieldset" class="hidden">
+                                <legend class="required-label"> Select the type of testamentary trust.</legend>
+                                                     
+                                <select id="s1q3-dropdown" name="s1q3-dropdown" data-toggle="s1q4-fieldset">
+                                    <option value="" selected>(Select)</option>
+                                    <option value="Alter ego trust">Graduated rate estate (GRE) trust</option>
+                                    <option value="Spousal or common-law partner trust">Spousal or common-law partner trust</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                                              
+                            </fieldset>
+
+                    
+
+                            <fieldset id="s1q4-fieldset" class="hidden" data-radio-group>
+                                <legend class="required-label"> Has the final trust (T3) income tax and information return been filed?</legend>
+                                
+                                <div class="group">
+                                    <input type="radio" id="s1q4-op1" name="s1q4" value="Yes" data-toggle="s1q5-fieldset">
+                                    <label for="s1q4-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s1q4-op2" name="s1q4" value="No" data-toggle="alert-unfiled-final">
+                                    <label for="s1q4-op2"></label>
+                                </div>
+                           
+                                <div class="alert hidden" id="alert-unfiled-final">
+                                    <div class="alert-error">
+                                        <div class="line"></div>
+                                        <div><span class="material-icons">
+                                            report
+                                            </span>
+                                        </div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="alert-content">
+                                        You cannot continue with this request. You must file all required tax returns, receive the notices of assessment, and pay any tax amounts before you can request a clearance certificate. Go to <a>File the returns - Prepare tax returns for someone who died</a> for more information.
+                                    </div>
+                                </div>
+                               
+                            </fieldset>
+
+                             <fieldset id="s1q5-fieldset" class="hidden" data-radio-group>
+                                <legend class="required-label"> Have all the notices of assessment been received for the filed tax returns?</legend>
+                                <div class="group">
+                                    <input type="radio" id="s1q5-op1" name="s1q5" value="Yes" data-toggle="s1q6-fieldset">
+                                    <label for="s1q5-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s1q5-op2" name="s1q5" value="No" data-toggle="alert-missingnoas">
+                                    <label for="s1q5-op2"></label>
+                                </div>
+                                <div class="alert hidden" id="alert-missingnoas">
+                                    <div class="alert-error">
+                                        <div class="line"></div>
+                                        <div><span class="material-icons">
+                                            report
+                                            </span>
+                                        </div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="alert-content">
+                                        You cannot continue with this request. Go to <a>Tax returns</a> to check the status of the tax returns filed. After you receive the notices of assessment and pay any amounts owing you can proceed with this request.
+                                    </div>
+                                </div>
+                                                              
+                            </fieldset>
+                            <fieldset id="s1q6-fieldset" class="hidden" data-radio-group>
+                                <legend class="required-label"> Have all outstanding balances been paid to the CRA?</legend>
+                                <div class="group">
+                                    <input type="radio" id="s1q6-op1" name="s1q6" value="Yes" data-toggle="s1q7-fieldset">
+                                    <label for="s1q6-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s1q6-op2" name="s1q6" value="No" data-toggle="alert-outstandingbalance">
+                                    <label for="s1q6-op2"></label>
+                                </div>
+                                <div class="alert hidden" id="alert-outstandingbalance">
+                                    <div class="alert-error">
+                                        <div class="line"></div>
+                                        <div><span class="material-icons">
+                                            report
+                                            </span>
+                                        </div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="alert-content">
+                                        You cannot continue with this request. Go to <a>Make a payment</a> to see the different options to pay the outstanding balance.
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="s1q7-fieldset" class="hidden" data-radio-group>
+                                <legend class="required-label"> Have all outstanding requests been processed by the CRA?<br><span class="sub-label">For example: An adjustment, objection, taxpayer relief request, etc.</span></legend>
+                                
+                                <div class="group">
+                                    <input type="radio" id="s1q7-op1" name="s1q7" value="Yes">
+                                    <label for="s1q7-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s1q7-op2" name="s1q7" value="No" data-toggle="alert-outstandingcase">
+                                    <label for="s1q7-op2"></label>
+                                </div>
+                           
+                                <div class="alert hidden" id="alert-outstandingcase">
+                                    <div class="alert-error">
+                                        <div class="line"></div>
+                                        <div><span class="material-icons">
+                                            report
+                                            </span>
+                                        </div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="alert-content">
+                                        You cannot continue with this request. Go to <a>Progress tracker</a> to check the status of any in progress requests.
+                                    </div>
+                                </div>
+                               
+                            </fieldset>
+
+
+                            <button class="btn btn-secondary back-button" type="button">Back</button>
+                            <button class="btn btn-primary next-button" type="button">Next</button>
+                            <button class="hidden btn btn-primary out-button" type="button" onclick="location.href='chooser.html'">Return to Overview</button>
+                        </form>
+                        <div class="lightbox-container" id="s1q1-lightbox">
+                            <div class="lightbox">
+                                <div class="header">
+                                    <div>
+                                        <span class="material-icons">help</span>
+                                        <h3>What type of trust is this?</h3>
+                                    </div>
+                                    
+                                    <button data-closebtn class="btn-tertiary" type="button">
+                                        <span class="material-icons">clear</span>
+                                    </button>
+                                </div>
+                                <div class="lightbox-content">
+                                    A <strong>testamentary trust</strong> is generally created on and as a result of the death of an individual through their will or by court order in relation to their estate under provincial or territorial law.
+                                    <br><br>
+                                    An <strong>inter vivos trust</strong> (also known as a living trust) is created during an individual's lifetime.
+                                    </ul><br>
+                                    
+                                </div>
+                                <div class="buttons">
+                                    <button class="btn-tertiary-brdr" data-closebtn type="button">Close</button>
+                                </div>
+                            </div>
+                        </div>
+
+                  
+                    </div>
+                </div>
+            </section>
+
+            <section class="step" id="step-2">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Trust information</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+                        <form id="step-2-form">
+                            <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                            <div id="trust-panel-container">                         
+                            </div>
+                            <fieldset id="s2q1-fieldset" data-radio-group>
+                                <legend class="required-label"> Are all beneficiaries Canadian residents?
+                                </legend>
+                                <div class="group">
+                                    <input type="radio" id="s2q1-op1" name="s2q1" value="Yes">
+                                    <label for="s2q1-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s2q1-op2" name="s2q1" value="No">
+                                    <label for="s2q1-op2"></label>
+                                </div>
+                            </fieldset>
+                           
+                            <button class="btn btn-secondary back-button" type="button">Back</button>
+                            <button class="btn btn-primary next-button" type="button">Next</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </section>
+       
+            <section class="step" id="step-3">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Representative’s information</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+                        <form id="step-3-form">
+                            <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div><br>
+                            <div id="legalrep-container">
+                                <div id="legalrep-panel-container"></div>
+                            <div class="alert" id="alert-norep">
+                                <div class="alert-warning">
+                                    <div class="line"></div>
+                                    <div>
+                                        <span class="material-icons">
+                                        report
+                                        </span>
+                                    </div>
+                                    <div class="line"></div>
+                                </div>
+                                <div class="alert-content">
+                                    Our records indicate that you are not a legal representative (for example, a trustee, executor, administrator, or liquidator) for this trust. 
+                                    Clearance certificates can only be mailed to a legal representative. You must provide information about the legal representative(s) to proceed with this request.  
+                                </div>
+                            </div>
+                            <div class="alert" id="alert-mailing">
+                                <div class="alert-info">
+                                    <div class="line"></div>
+                                    <div><span class="material-icons">
+                                        report
+                                        </span>
+                                    </div>
+                                    <div class="line"></div>
+                                </div>
+                                <div class="alert-content">
+                                    The clearance certificate will be mailed to you at the above address.
+                                </div>
+                            </div>
+                            
+                            
+                            <fieldset id="legalrepinfo-fieldset">
+                                <label class="required-label" for="s3-lvl3-reptel">Telephone number</label>
+                                <input class="half-width" type="text" id="s3-lvl3-reptel" name="s3-lvl3-reptel">
+
+                               
+                                <label class="optional-label" for="s3-lvl3-repemail" class="ml-16px">Email address<br>
+                                </label>
+                                <input class="half-width" type="text" id="s3-lvl3-repemail" name="s3-lvl3-repemail">
+                              
+
+                                <label class="required-label" for="s3-lvl3-reprole">Role</label>                        
+                                <select id="s3-lvl3-reprole" name="s3-lvl3-reprole">
+                                    <option value="" selected>(Select)</option>
+                                  
+                                </select>
+                            
+                            </fieldset>
+                            <fieldset id="s3q1-fieldset" data-radio-group>
+                                <legend class="required-label"> Are there any other legal representatives associated to this account?<br><span class="sub-label">For example, a co-trustee, etc.   </span></legend>
+                                <div class="group">
+                                    <input type="radio" id="s3q1-op1" name="s3q1" value="Yes" data-toggle="s3q2-fieldset">
+                                    <label for="s3q1-op1"></label>
+                                </div>
+                                <div class="group">
+                                    <input type="radio" id="s3q1-op2" name="s3q1" value="No">
+                                    <label for="s3q1-op2"></label>
+                                </div>
+                             
+                            </fieldset>
+                            <fieldset id="s3q2-fieldset" class="hidden" required>
+                                <label class="required-label" for="s3q2-field">Provide information for any other legal representatives associated to this account.</label>
+                                <table id="tb-add-rep" class="table dynamic-table" cellpadding="0" cellspacing="0" required>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-placeholder="You have not added any representatives.">
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-secondary" data-toggleLB="addlegalrep-lightbox" type="button">
+                                    <span class="material-icons">add</span>Add legal representative information
+                                </button>
+                            </fieldset>
+
+                        </div><br>
+                           
+                            <button class="btn btn-secondary back-button" type="button">Back</button>
+                            <button class="btn btn-primary next-button" type="button">Next</button>
+                        </form>
+                        <div class="lightbox-container" id="addlegalrep-lightbox">
+                            <div class="lightbox">
+                                <div class="header">
+                                    <h3>Add legal representative information</h3>
+                                    <button data-closebtn class="btn-tertiary" type="button">
+                                    <span class="material-icons">clear</span></button>
+                                </div>
+                                <div class="lightbox-content">
+                                    <form id="s3-replightbox">
+                                        <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                                        <br>
+                                        <div class="field-row">
+                                            <div>
+                                                <label class="required-label" for="s3-repfname">First name of representative</label>
+                                                <input type="text" id="s3-repfname" name="s3-repfname">
+                                            </div>
+                                            <div>
+                                                <label class="required-label" for="s3-replname">Last name of representative</label>
+                                                <input type="text" id="s3-replname" name="s3-replname">
+                                            </div>
+                                            
+                                        </div>
+                                                                   
+                                        <div class="field-row">
+                                            <div>
+                                                <label class="required-label" for="s3-reptel">Telephone number</label>
+                                                <input type="text" id="s3-reptel" name="s3-reptel">
+                                            </div>
+                                            <div>
+                                                <label class="optional-label ml-16px" for="s3-lvl3-repemail">Email address<br>
+                                                </label>
+                                                <input type="text" id="s3-repemail" name="s3-repemail">
+                                              
+                                           
+                                            </div>
+                                         
+                                        </div>
+                                        <label class="required-label" for="s3-reprole">Role of representative</label>
+                                        <select id="s3-reprole-lb" name="s3-reprole">
+                                            <option value="" selected>(Select)</option>
+                                            
+                                        </select>
+                                       
+                                        <br><br>
+                                        <div class="" id="s3-level3-address">
+                                            <strong>The clearance certificate will be mailed to the following address:</strong><br>
+                                            <span id="s3-deceased-address"></span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="buttons">
+                                    <button class="btn-primary" data-submit type="button">Save</button>
+                                    <button class="btn-tertiary" data-closebtn type="button">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="step" id="step-4">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Type of clearance</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+
+                    <form id="step-4-form">
+                        <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                        <br>
+                        
+                       
+                        <fieldset id="s4q1-fieldset" required>
+                            <legend class="required-label">
+                                What type of clearance are you requesting?
+                            </legend>
+                            <div class="group">
+                                <input type="radio" id="s4q1-op1" name="s4q1" value="Partial distribution - T3 trust income tax and information return" data-toggle="s4q2-fieldset,s4q3-fieldset">
+                                <label for="s4q1-op1"></label>
+                            </div>
+                            <div class="group">
+                                <input type="radio" id="s4q1-op2" name="s4q1" value="Final distribution - T3 trust income tax and information return" data-toggle="s4q2-fieldset,s4q3-fieldset">
+                                <label for="s4q1-op2"></label>
+                            </div>
+                            
+                        </fieldset>
+                        
+                        <fieldset class="hidden" id="s4q2-fieldset" required>
+                            <label for="s4q2-field" class="required-label">Fiscal end date of the last filed T3 return<br>
+                            </label>
+                           
+                            <div class="input-wrapper ml-16px">
+                                <input class="" type="text" id="s4q2-field" name="s4q2" placeholder="YYYY-MM-DD">
+                                <div class="suffix">
+                                    <span class="material-icons">calendar_month</span>
+                                   
+                                    
+                               </div>
+                                <div class="datepicker-modal hidden"></div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="hidden" id="s4q3-fieldset">
+                            <label for="s4q3-field" class="required-label">Wind up date    
+                                <a data-toggleLB="s4q3-lightbox">
+                                    <span class="material-icons">
+                                    help
+                                    </span>
+                                </a>
+                            </label>
+                           
+                            <div class="input-wrapper ml-16px">
+                                <input class="" type="text" id="s4q3-field" name="s4q3" placeholder="YYYY-MM-DD">
+                                <div class="suffix">
+                                    <span class="material-icons">calendar_month</span>
+                                   
+                                    
+                               </div>
+                                <div class="datepicker-modal hidden"></div>
+                            </div>
+                        </fieldset>
+                        <br>
+                      
+                    </form>
+                    <div class="lightbox-container" id="s4q3-lightbox">
+                            <div class="lightbox">
+                                <div class="header">
+                                    <div>
+                                        <span class="material-icons">help</span>
+                                        <h3>Wind-up date</h3>
+                                    </div>
+                                    
+                                    <button data-closebtn class="btn-tertiary" type="button">
+                                        <span class="material-icons">clear</span>
+                                    </button>
+                                </div>
+                                <div class="lightbox-content">
+                                    "Wind-up date" refers to the date planned to distribute assets. Date cannot be later than the date of the request.
+                                    </ul><br>
+                                    
+                                </div>
+                                <div class="buttons">
+                                    <button class="btn-tertiary-brdr" data-closebtn type="button">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <button class="btn btn-secondary back-button" type="button">Back</button>
+                    <button class="btn btn-primary next-button" type="button">Next</button>
+                </div>
+            </section>
+
+
+            <section class="step" id="step-5">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Supporting documents</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+
+                    <form id="step-5-form">
+                        <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                        <br>
+                        <div>
+                            <strong>Documents you need to provide:</strong>
+                            <ul>
+                                <li>A copy of the trust agreement</li>
+                                <li>A detailed list of all assets that were held by the trust</li>
+                                <li>A detailed statement of asset distribution on wind up (including beneficiaries)</li>
+                
+                            </ul>
+                        </div>
+                        
+                       
+                        <fieldset id="s5q1-fieldset" required>
+                            <legend class="required-label">
+                                Have you already submitted all the documents above?
+                            </legend>
+                            <div class="group">
+                                <input type="radio" id="s5q1-op1" name="s5q1" value="Yes" data-toggle="s5q2-fieldset">
+                                <label for="s5q1-op1"></label>
+                            </div>
+                            <div class="group">
+                                <input type="radio" id="s5q1-op2" name="s5q1" value="No, but I have submitted at least one" data-toggle="s5q2-fieldset">
+                                <label for="s5q1-op2"></label>
+                            </div>
+                            <div class="group">
+                                <input type="radio" id="s5q1-op3" name="s5q1" value="No, I have not submitted any" data-toggle="s5q4-fieldset">
+                                <label for="s5q1-op3"></label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="hidden" id="s5q2-fieldset" required>
+                            <legend class="required-label">
+                                How were the documents submitted?</legend>
+                            <div class="group">
+                                <input type="radio" id="s5q2-op1" name="s5q2" value="Mail or fax" data-toggle="s5q3-fieldset,s5q4-fieldset">
+                                <label for="s5q2-op1"></label>
+                            </div>
+                            <div class="group">
+                                <input type="radio" id="s5q2-op2" name="s5q2" value="Electronically" data-toggle="s5q3-fieldset,s5q4-fieldset">
+                                <label for="s5q2-op2"></label>
+                            </div>
+                            <div class="group">
+                                <input type="radio" id="s5q2-op3" name="s5q2" value="Both" data-toggle="s5q3-fieldset,s5q4-fieldset">
+                                <label for="s5q2-op3"></label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="hidden" id="s5q3-fieldset">
+                            <label for="s5q3-field" class="ml-16px">Provide the reference/case number(s) associated to your submission<br>
+                                <span class="sub-label">Separate reference/case numbers using a comma.</span>
+                            </label>
+                            <input class="half-width" type="text" id="s5q3-field" name="s5q3">
+                        </fieldset>
+                        <fieldset class="ml-16px hidden" id="s5q4-fieldset" required>
+                            <legend id="docreq-label" class="required-label" for="s5q3-field">Upload documents to support your request
+                                <br><span class="sub-label">Documents that have already been sent do not need to be uploaded again.</span>
+                            </legend>
+                            <legend id="docrem-label" class="hidden required-label" for="s5q4-field">Upload the remaining documents to support your request
+                                <br><span class="sub-label">Documents that have already been sent do not need to be uploaded again.</span>
+                            </legend>
+                            <legend id="docopt-label" class="hidden" for="s5q4-field">Upload any additional documents to support your request
+                                <br><span class="sub-label">Documents that have already been sent do not need to be uploaded again.</span>
+                            </legend>
+                            
+                            <table id="tb-upload-doc" class="table dynamic-table" cellpadding="0" cellspacing="0" required>
+                                <thead>
+                                    <tr>
+                                        <th>File name</th>
+                                        <th>Description</th>
+                                        <th>File size</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-placeholder="You have not uploaded any documents.">
+                                </tbody>
+                            </table>
+                            <div class="buttons">
+                                <button class="btn-secondary close" type="button" data-togglelb="uploaddoc-lightbox">
+                                <span class="material-icons">
+                                add
+                                </span>
+                                Attach document</button>
+                            </div>
+                            <div id="uploadedfile-info" style="text-align:right;">
+                                Total size: <span id="uploadedfiles-size"></span><br>
+                                Maximum total file upload size is 500 MB
+                            </div>
+                        </fieldset>
+                    </form>
+                    </div>
+                    <div class="lightbox-container" id="uploaddoc-lightbox">
+                        <div class="lightbox">
+                            <div class="header">
+                                <h3>Upload document</h3>
+                                <button class="btn-tertiary" type="button" data-closebtn>
+                                <span class="material-icons">clear</span></button>
+                            </div>
+                            <div class="lightbox-content">
+                                <form id="s5-doc-form">
+                                    <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                                    <br>
+                                    <label for="s5lb-upload" class="required-label">Upload your document</label>
+                                    <span class="ml-16px">Allowable file types: .pdf, .doc, .docx, .xls, .xlsx, .rtf, .txt, .jpg, .jpeg, .tiff, .tif, .xps
+                                    </span><br><button id="s5-browsebtn" type="button" class="ml-16px btn-secondary">Browse</button>
+                                    <span class="fileName" id="s5-filename-display" data-formelement data-placeholder="No file chosen.">No file chosen.</span>
+
+                                    <input type="hidden" id="s5-filename" name="s5-filename">
+                                    
+                                    
+                                    <label for="s5lb-descfield" class="required-label">Provide a brief description of your document (maximum 150 characters).</label>
+                                    <input type="text" id="s5-desc" name="s5-desc" maxlength="150" required>
+                                    <input type="hidden" id="s5-size" name="s5-size">
+                                </form>
+                                <div id="s5-browsewind" class="browse-window hidden">
+                                    <div class="browse-window-header">Browse</div>
+                                        <ul class="file-list">
+                                             <li id="trust-doc" class="file-item"><span class="material-icons file-icon">insert_drive_file</span>TrustAgreement.docx</li>
+                                            
+                                            <li id="detailedassets-doc"  class="file-item"><span class="material-icons file-icon">insert_drive_file</span>DetailedAssetsList.docx</li>
+                                            <li id="assetdistribution-doc" class="file-item"><span class="material-icons file-icon">insert_drive_file</span>AssetDistribution_List.docx</li>
+                                            <li id="mortgage-doc" class="file-item"><span class="material-icons file-icon">insert_drive_file</span>Resume2025.docx</li>
+                                        </ul>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button class="btn-primary" type="button" data-submit>Upload document</button>
+                                <button class="btn-tertiary" type="button" data-closebtn>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary back-button" type="button">Back</button>
+                    <button class="btn btn-primary next-button" type="button">Next</button>
+                </div>
+            </section>
+
+            <section class="step" id="step-6">
+                <div class="step-header">
+                    <div class="step-number">
+                        <span class="step-icon material-icons">check</span>
+                    </div>
+                    <h2>Review and submit</h2>
+                </div>
+                <div class="step-content">
+                    <div class="container">
+
+                    <form id="step-6-form">
+                        <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
+                        <div id="s6-review-container">
+                          
+                        </div>
+                        <fieldset id="s6q1-fieldset" required>
+                            <legend class="required-label">
+                                Declaration
+                            </legend>
+                        <div class="group">
+
+                        <input type="checkbox" id="s6q1-op1" name="s6q1" value="I am asking for a clearance certificate from the Minister of National Revenue. The certificate will certify that all taxes (including provincial or territorial taxes administered by the Canada Revenue Agency), Canada Pension Plan contributions, employment insurance premiums, and any related interest and penalties for which the deceased, corporation, or trust named above is liable (or can reasonably be expected to become liable) have been paid or that the Minister has accepted security for the amounts. The certificate will apply to the tax year in which the distribution is made and any previous year for which the legal representative of the deceased, corporation, or trust identified is liable (or can reasonably be expected to become liable). The distribution of all of the property will be completed as soon as possible after receiving the clearance certificate.">
+                        <label for="s6q1-op1"></label>
+                        </div>
+                        </fieldset>
+                    </form>
+                    </div>
+                    
+                    <button class="btn btn-secondary back-button" type="button">Back</button>
+                    <button id="appsubmit-btn" class="btn btn-primary" type="button">Submit</button>
+                </div>
+            </section>
+        </main>
+        <script src="scripts_t3_intervivos.js"></script>
+    </body>
+</html>
