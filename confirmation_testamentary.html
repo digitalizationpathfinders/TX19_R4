@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-          <header class="header">
+       <header class="header">
             <div class="header-content">
                 <div class="brand">
                     <img src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt="Government of Canada">
@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <span class="inline-flex" id="task-accountuser-type">
-                            <span class="material-icons">business_center</span>Business client
+                            <span class="material-icons">security</span>Trust client
                         </span><BR>
                         <span class="uppercase" id="task-accountuser-name">
                         </span>
@@ -70,22 +70,23 @@
                     
                 </div>
             </div>
-      
+          
             <h3>Next steps</h3>
             <p>Submit any remaining documents from the list below that you have not yet submitted.</p>
             <ul>
-               <li>A copy of the  director's or shareholder's resolution authorizing the dissolution
-                                </li>
-                                <li>A copy of the Letter of Consent to dissolve or the Certificate of Dissolution (if available).
-                                </li>
-                                <li>Statement and plan of distribution of assets at the date of wind-up
-                                </li>
+               <li>Taxpayer's will (if no will exists, an official document that names the legal representative)
+                </li>
+                <li>List of assets
+                </li>
+                <li>Statement of distribution of assets
+                </li>
             </ul>
              <button class="btn btn-secondary next-button" type="button" onclick="returnToOverview()">Submit supporting documents</button>
              <br>
              <p>
                 For information on the service standard for issuing clearance certificates, go to <a>Service standards in the CRA</a>
              </p>
+        
             <button class="btn btn-primary next-button" type="button" onclick="returnToOverview()">Return to Overview</button>
         </div>
     </body>
@@ -110,8 +111,8 @@
                     document.getElementById("task-rep-name").textContent = "REPRESENTATIVE NAME";
                 }
 
-                if (taskData.accountInfo && taskData.accountInfo.name) {
-                    document.getElementById("task-accountuser-name").textContent = taskData.accountInfo.name;
+                if (taskData.deceasedInfo && taskData.deceasedInfo.name) {
+                    document.getElementById("task-accountuser-name").textContent = taskData.deceasedInfo.name;
                 }
             }
         });

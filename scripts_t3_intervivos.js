@@ -196,6 +196,7 @@ class Step2Handler {
 
         var shownData = { 
             name: this.account.name, 
+            trustType: this.account.trustType,
             trustNumber: this.account.trustNumber
         };
 
@@ -206,7 +207,7 @@ class Step2Handler {
             editButton: false, 
             editIndex: null,
             reviewPanel: false,
-            labels: ["Trust's name", "Trust number"]
+            labels: ["Trust's name", "Trust type", "Trust number"]
         })
     
     }
@@ -583,7 +584,7 @@ class Step6Handler {
             sessionStorage.setItem("racUserName", JSON.stringify(DataManager.getData("racUserName")));
         
             // Redirect to confirmation page
-            window.location.href = "confirmation_t3.html";
+            window.location.href = "confirmation_intervivos.html";
         });
     }
 
@@ -1319,10 +1320,10 @@ class ProgressiveDisclosure {
         this.initializeEventListeners();
         this.outConditions = [
             //step 1 selections that result in an "out"
-            ["s1q4-op2"],
-            ["s1q5-op2"], 
-            ["s1q6-op2"],
-            ["s1q7-op2"]
+            ["s1q1-op2"],
+            ["s1q2-op2"], 
+            ["s1q3-op2"],
+            ["s1q4-op2"]
         ];
         
     }
@@ -1393,7 +1394,6 @@ class ProgressiveDisclosure {
             }
         });
 
-        // ✅ NEW: Hide all subsequent fieldsets if the current input triggers an out
         const parentFieldset = input.closest("fieldset");
         if (parentFieldset && parentFieldset.classList.contains("hidden")) {
             let nextFieldset = parentFieldset.nextElementSibling;

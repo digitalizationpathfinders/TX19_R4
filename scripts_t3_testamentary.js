@@ -180,7 +180,6 @@ class Stepper {
 }
 class Step1Handler {
     constructor(){
-        this.q1Lightbox = new FormLightbox(document.getElementById("s1q1-lightbox"));
     }
 }
 class Step2Handler {
@@ -195,7 +194,8 @@ class Step2Handler {
     populateAccountPanel(){
 
         var shownData = { 
-            name: this.account.name, 
+            name: this.account.name,
+            trustType: this.account.trustType,
             trustNumber: this.account.trustNumber
         };
 
@@ -206,7 +206,7 @@ class Step2Handler {
             editButton: false, 
             editIndex: null,
             reviewPanel: false,
-            labels: ["Estate of", "Trust account number"]
+            labels: ["Estate of", "Trust type", "Trust account number"]
         })
     
     }
@@ -411,152 +411,6 @@ class Step4Handler {
 class Step5Handler {
     constructor() {
     
-        this.documentsTable = new TableObj("tb-upload-doc");
-        this.uploadDocLightbox = new FormLightbox(document.getElementById("uploaddoc-lightbox"));
-        this.documentUploadFieldset = document.getElementById("s5q4-fieldset");
-
-
-        this.browseFileButton = document.getElementById("s5-browsebtn");
-        this.browseWindow = document.getElementById("s5-browsewind");
-        this.fileList = document.querySelectorAll('.file-item');
-   
-    
-        this.fileNameDisplay = document.getElementById("s5-filename-display");
-        this.hiddenFileInput = document.getElementById("s5-filename");
-        this.hiddenFileSize = document.getElementById("s5-size");
-
-        this.uploadedDocSelected = document.querySelectorAll('input[name="s5q1"]');
-        this.uploadMethod = document.querySelectorAll('input[name="s5q2"]');
-       
-        if(!this.browseFileButton) return; 
-
-        this.uploadedDocSelected.forEach(radio => {
-            radio.addEventListener('click', () => {
-                this.updateDocTableLabel(radio.id);
-            });
-            radio.addEventListener('change', () => {
-                this.updateDocTableLabel(radio.id);
-            });
-          });
-       
-
-        this.browseFileButton.addEventListener("click", () => {
-            this.browseWindow.classList.remove('hidden');
-        });
-        this.fileList.forEach((file) => {
-            file.addEventListener('click', () =>{
-                this.selectFile(file);
-                this.browseWindow.classList.add('hidden');
-            });
-        }); 
-
-        document.addEventListener("lightboxSubmitted", (event) => {
-            if (event.detail.lightboxId === "uploaddoc-lightbox") {
-                this.handleFormSubmit(event.detail.formData);
-            }
-        });
-        // Listen for edit events
-        document.addEventListener("editRowEvent", (event) => {
-            if (event.detail.tableID === "tb-upload-doc") {
-                this.openEditLightbox(event.detail.index, event.detail.rowData);
-            }
-        });
-        document.addEventListener("fileSizeUpdated", () => {
-            this.calculateTotalFileSize();
-        });
-        document.addEventListener("rowDeleted", () => {
-            this.calculateTotalFileSize();
-        });
-        
-
-        this.calculateTotalFileSize();
-    }
-
-    updateDocTableLabel(radioID){
-        var reqLabel = document.getElementById("docreq-label");
-        var remLabel = document.getElementById("docrem-label");
-        var optLabel = document.getElementById("docopt-label");
-
-        if (radioID == 's5q1-op1') {
-               
-            reqLabel.classList.add('hidden');
-            remLabel.classList.add('hidden');
-            optLabel.classList.remove('hidden');
-     
-        }
-        else if(radioID == 's5q1-op2') {
-            reqLabel.classList.add('hidden');
-            remLabel.classList.remove('hidden');
-            optLabel.classList.add('hidden');
-        } 
-        else {
-            reqLabel.classList.remove('hidden');
-            remLabel.classList.add('hidden');
-            optLabel.classList.add('hidden');
-        }
-    }
-    selectFile(file){
-        
-        let fileName = file.childNodes[1].nodeValue.trim();
-        this.fileNameDisplay.textContent = fileName;
-        this.hiddenFileInput.value = fileName;
-        const fakeSize = Math.floor(Math.random() * 450) + 50; // Generates 50-500 KB
-        this.hiddenFileSize.value = fakeSize; // Store size as a number
-        
-    }
-
-    openEditLightbox(index, rowData) {
-       
-        // Set the index of the row being edited
-        this.uploadDocLightbox.setEditIndex(index);
-
-        // Fill form with existing row data
-        this.uploadDocLightbox.populateForm(rowData);
-         // Manually update filename span
-        if (rowData["s5-filename"]) {
-            const filenameDisplay = document.getElementById("s5-filename-display");
-        if (filenameDisplay) {
-            filenameDisplay.textContent = rowData["s5-filename"];
-        }
-    }
-
-        // Open the lightbox
-        this.uploadDocLightbox.openLightbox();
-    }
-
-    handleFormSubmit(formData) {
-        const editIndex = this.uploadDocLightbox.getEditIndex();
-        
-
-        let fileSize = parseInt(formData["s5-size"], 10) || 0;
-        formData["s5-size"] = fileSize < 1024 ? `${fileSize} KB` : `${(fileSize / 1024).toFixed(2)} MB`;
-    
-        if (editIndex !== null && editIndex !== undefined && editIndex !== "") {
-            this.documentsTable.rows[editIndex] = formData;
-            this.uploadDocLightbox.clearEditIndex();
-            this.documentsTable.refreshTable();
-        } else {
-            this.documentsTable.addRow(formData);
-          
-        }       
-        document.dispatchEvent(new Event("fileSizeUpdated")); // Notify that the file size changed
-
-    }
-
-    calculateTotalFileSize() {
-        let totalSize = this.documentsTable.rows.reduce((sum, row) => {
-            let size = parseInt(row["s5-size"], 10) || 0; // Ensure size is numeric
-            return sum + size;
-        }, 0);
-    
-        let displaySize;
-        if (totalSize < 1024) {
-            displaySize = `${totalSize} KB`; // Keep KB format
-        } else {
-            displaySize = `${(totalSize / 1024).toFixed(2)} MB`; // Convert to MB with two decimals
-        }
-    
-        document.getElementById("uploadedfiles-size").textContent = displaySize;
     }
 
     
@@ -581,7 +435,7 @@ class Step6Handler {
             sessionStorage.setItem("racUserName", JSON.stringify(DataManager.getData("racUserName")));
         
             // Redirect to confirmation page
-            window.location.href = "confirmation_t3.html";
+            window.location.href = "confirmation_testamentary.html";
         });
     }
 
@@ -1314,10 +1168,10 @@ class ProgressiveDisclosure {
         this.initializeEventListeners();
         this.outConditions = [
             //step 1 selections that result in an "out"
-            ["s1q4-op2"],
-            ["s1q5-op2"], 
-            ["s1q6-op2"],
-            ["s1q7-op2"]
+            ["s1q1-op2"],
+            ["s1q2-op2"], 
+            ["s1q3-op2"],
+            ["s1q4-op2"]
         ];
         
     }

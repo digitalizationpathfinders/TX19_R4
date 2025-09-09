@@ -116,13 +116,13 @@ class Stepper {
                 }
             });
         }
-        if (stepNum === 3) {
+        if (stepNum === 2) {
             const handler = this.stepHandlers[stepNum];
             if (handler instanceof Step3Handler && handler.userLevel === 3) {
                 handler.updateSingleLevel3Rep();
             }
         }
-        if (stepNum === 5) {
+        if (stepNum === 4) {
             let step5Handler = this.stepHandlers[stepNum]; 
             if (step5Handler && step5Handler.documentsTable) {
                 dataObj["uploadedDocuments"] = step5Handler.documentsTable.rows;
@@ -163,16 +163,13 @@ class Stepper {
                     this.stepHandlers[stepNum] = new Step2Handler(); 
                     break;
                 case 3:
-                    this.stepHandlers[stepNum] = new Step3Handler(); 
+                    this.stepHandlers[stepNum] = new Step3Handler();
                     break;
                 case 4:
-                    this.stepHandlers[stepNum] = new Step4Handler();
+                     this.stepHandlers[stepNum] = new Step4Handler();
                     break;
                 case 5:
-                     this.stepHandlers[stepNum] = new Step5Handler();
-                    break;
-                case 6:
-                    this.stepHandlers[stepNum] = new Step6Handler(this);
+                    this.stepHandlers[stepNum] = new Step5Handler(this);
                     break;
             }
         }
@@ -182,34 +179,8 @@ class Step1Handler {
     constructor(){
     }
 }
+
 class Step2Handler {
-    constructor(){
-        this.corporationContainer = document.getElementById("corporation-panel-container");
-        this.account = DataManager.getData("accountInfo") || null;
-
-        this.populateAccountPanel();
-        
-    }
-    populateAccountPanel(){
-
-        var shownData = { 
-            name: this.account.name, 
-            businessNumber: this.account.businessNumber
-        };
-
-        new PanelObj({
-            container: this.corporationContainer,
-            title: "Corporation information on file",
-            data: shownData,
-            editButton: false, 
-            editIndex: null,
-            reviewPanel: false,
-            labels: ["Business name", "Business number"]
-        })
-    
-    }
-}
-class Step3Handler {
     constructor() {
         this.userLevel = parseInt(DataManager.getData("userLevel")) || 2;
         this.legalReps = DataManager.getData("legalReps") || [];
@@ -222,11 +193,11 @@ class Step3Handler {
 
         this.noRepsAlert = document.getElementById("alert-norep");
         this.mailingAlert = document.getElementById("alert-mailing");
-        this.repsQuestion = document.getElementById("s3q1-fieldset");
-        this.repsTableFieldset = document.getElementById("s3q2-fieldset");
+        this.repsQuestion = document.getElementById("s2q1-fieldset");
+        this.repsTableFieldset = document.getElementById("s2q2-fieldset");
         this.legalRepInfoFieldset = document.getElementById("legalrepinfo-fieldset");
-        this.legalRepAddressLBDiv = document.getElementById("s3-level3-address");
-        this.legalRepAddressLBSpan = document.getElementById("s3-deceased-address");
+        this.legalRepAddressLBDiv = document.getElementById("s2-level3-address");
+        this.legalRepAddressLBSpan = document.getElementById("s2-deceased-address");
 
         this.repsTable = new TableObj("tb-add-rep");
         this.firstRepAdded = false;
@@ -257,7 +228,7 @@ class Step3Handler {
         if (this.userLevel === 3) {
            
             this.firstRepAdded = true;
-            this.renderPanel(this.legalReps[0], "Legal representative");
+            this.renderPanel(this.legalReps[0], "Legal representative's information on file");
             this.repsQuestion.classList.remove("hidden");
             this.noRepsAlert.classList.add("hidden");
             this.legalRepAddressLBDiv.querySelector('strong').innerHTML = "A copy of the clearance certificate will be mailed to the following address:";    
@@ -308,18 +279,18 @@ class Step3Handler {
       
     }
     getNewRepFromForm(formData) {
-        const fullName = `${formData["s3-repfname"]} ${formData["s3-replname"]}`.trim();
+        const fullName = `${formData["s2-repfname"]} ${formData["s2-replname"]}`.trim();
         return {
             name: fullName,
-            role: formData["s3-reprole"],
-            phone: formData["s3-reptel"],
-            email: formData["s3-repemail"]
+            role: formData["s2-reprole"],
+            phone: formData["s2-reptel"],
+            email: formData["s2-repemail"]
         };
     }
     updateSingleLevel3Rep() {
-        const phoneInput = document.querySelector('#s3-lvl3-reptel');
-        const emailInput = document.querySelector('#s3-lvl3-repemail');
-        const roleSelect = document.querySelector('#s3-lvl3-reprole');
+        const phoneInput = document.querySelector('#s2-lvl3-reptel');
+        const emailInput = document.querySelector('#s2-lvl3-repemail');
+        const roleSelect = document.querySelector('#s2-lvl3-reprole');
     
         if (!phoneInput || !roleSelect) return;
     
@@ -351,11 +322,8 @@ class Step3Handler {
         if (this.userLevel === 2 && this.legalReps.length > 0) {
             this.noRepsAlert.classList.add("hidden");
             this.legalRepAddressLBDiv.querySelector('strong').innerHTML = "A copy of the clearance certificate will be mailed to the following address:";    
-
           
-            }
-    
-      
+            } 
     }
 
     renderPanel(data, title) {
@@ -370,171 +338,52 @@ class Step3Handler {
     }
    
 }
-class Step4Handler {
+class Step3Handler {
     constructor(){
-        this.fiscalDatepicker = new DatepickerObj("s4q2-field");
-        this.windupDatepicker = new DatepickerObj("s4q3-field");
+        this.fiscalDatepicker = new DatepickerObj("s3q2-field");
+        this.windupDatepicker = new DatepickerObj("s3q3-field");
+        this.windupField = document.getElementById("s3q3-field");
+        this.fiscalField = document.getElementById("s3q2-field");
+        this.windupWrapper = document.getElementById("windup-wrapper");
+        this.sameAsCheckbox = document.getElementById("s3q3-op1");
+
+
+        this.sameAsCheckbox.addEventListener("click", ()=> {
+            this.setWindupField(this.sameAsCheckbox.checked, this.windupWrapper);
+            this.windupField.value = this.fiscalField.value;
+        });
+
+        this.fiscalField.addEventListener("dateSelected", (e) => {
+            if(this.sameAsCheckbox.checked){
+                this.windupField.value = e.detail.value;
+            }
+        })
     }
+    
+    setWindupField(disabled, wrapper){
+        this.windupField.disabled = disabled;
+        const input = wrapper.querySelector("input");
+        const suffix = wrapper.querySelector(".suffix");
+
+        if (disabled) {
+            input.disabled = true;
+            suffix.classList.add("disabled");
+            suffix.style.pointerEvents = "none"; // prevent clicks
+        } else {
+            input.disabled = false;
+            suffix.classList.remove("disabled");
+            suffix.style.pointerEvents = "auto";
+        }
+    }  
+}
+
+class Step4Handler {
+    constructor() {}
 }
 class Step5Handler {
-    constructor() {
-    
-        this.documentsTable = new TableObj("tb-upload-doc");
-        this.uploadDocLightbox = new FormLightbox(document.getElementById("uploaddoc-lightbox"));
-        this.documentUploadFieldset = document.getElementById("s5q4-fieldset");
-
-
-        this.browseFileButton = document.getElementById("s5-browsebtn");
-        this.browseWindow = document.getElementById("s5-browsewind");
-        this.fileList = document.querySelectorAll('.file-item');
-        if(DataManager.getData("taskNum") === 3){
-            this.fileList[0].classList.add("hidden");
-        }
-    
-        this.fileNameDisplay = document.getElementById("s5-filename-display");
-        this.hiddenFileInput = document.getElementById("s5-filename");
-        this.hiddenFileSize = document.getElementById("s5-size");
-
-        this.uploadedDocSelected = document.querySelectorAll('input[name="s5q1"]');
-        this.uploadMethod = document.querySelectorAll('input[name="s5q2"]');
-       
-        if(!this.browseFileButton) return; 
-
-        this.uploadedDocSelected.forEach(radio => {
-            radio.addEventListener('click', () => {
-                this.updateDocTableLabel(radio.id);
-            });
-            radio.addEventListener('change', () => {
-                this.updateDocTableLabel(radio.id);
-            });
-          });
-       
-
-        this.browseFileButton.addEventListener("click", () => {
-            this.browseWindow.classList.remove('hidden');
-        });
-        this.fileList.forEach((file) => {
-            file.addEventListener('click', () =>{
-                this.selectFile(file);
-                this.browseWindow.classList.add('hidden');
-            });
-        }); 
-
-        document.addEventListener("lightboxSubmitted", (event) => {
-            if (event.detail.lightboxId === "uploaddoc-lightbox") {
-                this.handleFormSubmit(event.detail.formData);
-            }
-        });
-        // Listen for edit events
-        document.addEventListener("editRowEvent", (event) => {
-            if (event.detail.tableID === "tb-upload-doc") {
-                this.openEditLightbox(event.detail.index, event.detail.rowData);
-            }
-        });
-        document.addEventListener("fileSizeUpdated", () => {
-            this.calculateTotalFileSize();
-        });
-        document.addEventListener("rowDeleted", () => {
-            this.calculateTotalFileSize();
-        });
-        
-
-        this.calculateTotalFileSize();
-    }
-
-    updateDocTableLabel(radioID){
-        var reqLabel = document.getElementById("docreq-label");
-        var remLabel = document.getElementById("docrem-label");
-        var optLabel = document.getElementById("docopt-label");
-
-        if (radioID == 's5q1-op1') {
-               
-            reqLabel.classList.add('hidden');
-            remLabel.classList.add('hidden');
-            optLabel.classList.remove('hidden');
-     
-        }
-        else if(radioID == 's5q1-op2') {
-            reqLabel.classList.add('hidden');
-            remLabel.classList.remove('hidden');
-            optLabel.classList.add('hidden');
-        } 
-        else {
-            reqLabel.classList.remove('hidden');
-            remLabel.classList.add('hidden');
-            optLabel.classList.add('hidden');
-        }
-    }
-    selectFile(file){
-        
-        let fileName = file.childNodes[1].nodeValue.trim();
-        this.fileNameDisplay.textContent = fileName;
-        this.hiddenFileInput.value = fileName;
-        const fakeSize = Math.floor(Math.random() * 450) + 50; // Generates 50-500 KB
-        this.hiddenFileSize.value = fakeSize; // Store size as a number
-        
-    }
-
-    openEditLightbox(index, rowData) {
-       
-        // Set the index of the row being edited
-        this.uploadDocLightbox.setEditIndex(index);
-
-        // Fill form with existing row data
-        this.uploadDocLightbox.populateForm(rowData);
-         // Manually update filename span
-        if (rowData["s5-filename"]) {
-            const filenameDisplay = document.getElementById("s5-filename-display");
-        if (filenameDisplay) {
-            filenameDisplay.textContent = rowData["s5-filename"];
-        }
-    }
-
-        // Open the lightbox
-        this.uploadDocLightbox.openLightbox();
-    }
-
-    handleFormSubmit(formData) {
-        const editIndex = this.uploadDocLightbox.getEditIndex();
-        
-
-        let fileSize = parseInt(formData["s5-size"], 10) || 0;
-        formData["s5-size"] = fileSize < 1024 ? `${fileSize} KB` : `${(fileSize / 1024).toFixed(2)} MB`;
-    
-        if (editIndex !== null && editIndex !== undefined && editIndex !== "") {
-            this.documentsTable.rows[editIndex] = formData;
-            this.uploadDocLightbox.clearEditIndex();
-            this.documentsTable.refreshTable();
-        } else {
-            this.documentsTable.addRow(formData);
-          
-        }       
-        document.dispatchEvent(new Event("fileSizeUpdated")); // Notify that the file size changed
-
-    }
-
-    calculateTotalFileSize() {
-        let totalSize = this.documentsTable.rows.reduce((sum, row) => {
-            let size = parseInt(row["s5-size"], 10) || 0; // Ensure size is numeric
-            return sum + size;
-        }, 0);
-    
-        let displaySize;
-        if (totalSize < 1024) {
-            displaySize = `${totalSize} KB`; // Keep KB format
-        } else {
-            displaySize = `${(totalSize / 1024).toFixed(2)} MB`; // Convert to MB with two decimals
-        }
-    
-        document.getElementById("uploadedfiles-size").textContent = displaySize;
-    }
-
-    
-}
-class Step6Handler {
     constructor(stepper) {
         this.stepper = stepper;
-        this.reviewContainer = document.getElementById("s6-review-container");
+        this.reviewContainer = document.getElementById("s5-review-container");
         this.submitBtn = document.getElementById("appsubmit-btn");
         this.populateReview();
 
@@ -560,10 +409,9 @@ class Step6Handler {
     
         const steps = [
             { stepNum: 1, title: "Eligibility", storageKey: "stepData_1" },
-            { stepNum: 2, title: "Corporation information", storageKey: "stepData_2", labels: ["Name", "Business number", "Are all directors Canadian residents?"] },
-            { stepNum: 3, title: "Representative's information", storageKey: "stepData_3" },
-            { stepNum: 4, title: "Type of clearance", storageKey: "stepData_4" },
-             { stepNum: 5, title: "Supporting documentation", storageKey: "stepData_5" },
+            { stepNum: 2, title: "Representative's information", storageKey: "stepData_2" },
+            { stepNum: 3, title: "Type of clearance", storageKey: "stepData_3" },
+             { stepNum: 4, title: "Supporting documentation", storageKey: "stepData_4" },
         ];
         const accountInfo = DataManager.getData("accountInfo") || {};
         steps.forEach(({ stepNum, title, storageKey, labels }) => {
@@ -582,7 +430,7 @@ class Step6Handler {
             data = { ...accountInfo, ...data }; 
              delete data.accountType;
             }
-           if (stepNum === 3) {
+           if (stepNum === 2) {
                let legalReps = DataManager.getData("legalReps") || [];
 
             
@@ -615,20 +463,20 @@ class Step6Handler {
                });
            }
            
-           else if (stepNum === 5 && data["uploadedDocuments"]) {
+        //    else if (stepNum === 4 && data["uploadedDocuments"]) {
             
-               subTableData = {
-                   title: "Attachments",
-                   headers: ["Name", "Description", "File Size"],
-                   columns: ["s5-filename", "s5-desc", "s5-size"],
-                   rows: data["uploadedDocuments"] || [] // Ensure it's always an array
-               };
+        //        subTableData = {
+        //            title: "Attachments",
+        //            headers: ["Name", "Description", "File Size"],
+        //            columns: ["s4-filename", "s4-desc", "s4-size"],
+        //            rows: data["uploadedDocuments"] || [] // Ensure it's always an array
+        //        };
                
-               delete data["uploadedDocuments"];
-           }
+        //        delete data["uploadedDocuments"];
+        //    }
            
 
-           if (stepNum !== 3) { // Avoid overwriting Step 3 data
+           if (stepNum !== 2) { // Avoid overwriting Step 3 data
                Object.keys(data).forEach((key, index) => {
                 if(stepNum === 2 && key === "address") return;
                    let questionLabel = labels && labels[index] ? labels[index] : this.getLabelForInput(key);
@@ -937,6 +785,14 @@ class DatepickerObj {
          const stepContent = this.wrapper.closest(".step-content");
         if (stepContent) stepContent.classList.remove("modal-open");
     }
+
+    // addChangeListener(){
+    //     this.input.addEventListener('change', ()=> {
+    //         console.log("inside the datepick obj", this.input.value)
+    //         return this.input.value;
+
+    //     });
+    // }
     
     static closeAll() {
         document.querySelectorAll(".datepicker-modal").forEach(modal => {
@@ -1147,6 +1003,9 @@ class DatepickerObj {
     selectDate(year, month, day) {
         const formatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         this.input.value = formatted;
+        this.input.dispatchEvent(new CustomEvent('dateSelected', {
+            detail: { value: this.input.value}
+        }));
         this.modal.classList.add("hidden");
     }
 

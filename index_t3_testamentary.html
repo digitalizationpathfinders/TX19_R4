@@ -51,33 +51,22 @@
                         
                         <button type="button" class="accordion">Types of documents you should have </button>
                         <div class="accordion-content">
-                            <strong>For a testamentary trust:</strong>
                             <ul>
-                                <li><strong>Taxpayer's will:</strong> A complete and signed copy of the will (with any codicils, renunciations, disclaimers, and probate documents, if applicable). If there is no will, provide an official document naming the legal representative
+                                
+                                <li>
+                                    <strong>List of assets:</strong> A list and description of assets transferred to a trust, including adjusted cost base (ACB) and fair market value (FMV) at the date of distribution
+                                 
                                 </li>
-                                <li><strong>List of assets:</strong> A detailed list and description of assets that were owned by the person who died at the date of death, including:
+                                <li><strong>Statement of distribution of assets:</strong> A statement showing how the assets of the trust has been distributed so far, including:
                                     <ul>
-                                        <li>Jointly held assets</li>
-                                        <li>Registered retirement savings plans (RRSP) and registered retirement income funds (including those with named beneficiaries)</li>
-                                        <li>Adjusted cost base (ACB) and fair market value (FMV) at the time of distribution</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Statement of distribution of assets:</strong> A statement showing how estate has been distributed so far, including:
-                                    <ul>
-                                        <li>A proposed plan for any holdback or residual amount/property</li>
+                                        <li>A proposed plan for any holdback or residual amount or property</li>
                                         <li>List of beneficiaries (non-cash only), including names, addresses and SINs or other tax identification numbers</li>
                                     </ul>
                                 </li>
-                        
+                                <li><strong>Taxpayer's will:</strong> A complete and signed copy of the will (with any codicils, renunciations, disclaimers, and probate documents, if applicable). If there is no will, provide an official document naming the legal representative.
+                                </li>
                             </ul>
-                             <strong>For other types of trust:</strong>
-                            <ul>
-                                <li><strong>Trust agreement:</strong> A copy of the complete trust agreement including any amendments or documents for the trust</li>
-                          
-                            </ul>
-
-
-                            <p>If you have already submitted any of these documents, you do not need to send them again.</p>
+                            
                         </div>
                         <button class="btn btn-primary next-button" type="button">Begin</button>
                     </div>
@@ -96,68 +85,18 @@
                         <form id="step-1-form">
                             <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
                           
-                            <fieldset id="s1q1-fieldset" data-radio-group>
-                                <legend class="required-label"> What type of trust is this?
-                                    <a data-toggleLB="s1q1-lightbox">
-                                        <span class="material-icons">
-                                        help
-                                        </span>
-                                    </a>
-                                </legend>                    
-                                    
+                           
 
+                            <fieldset id="s1q1-fieldset" class="" data-radio-group>
+                                <legend class="required-label"> Has the final trust income tax and information return (T3) been filed?</legend>
+                                
                                 <div class="group">
-                                    <input type="radio" id="s1q1-op1" name="s1q1" value="Inter vivos trust" data-toggle="s1q2-fieldset">
+                                    <input type="radio" id="s1q1-op1" name="s1q1" value="Yes" data-toggle="s1q2-fieldset">
                                     <label for="s1q1-op1"></label>
                                 </div>
                                 <div class="group">
-                                    <input type="radio" id="s1q1-op2" name="s1q1" value="Testamentary trust" data-toggle="s1q3-fieldset">
+                                    <input type="radio" id="s1q1-op2" name="s1q1" value="No" data-toggle="alert-unfiled-final">
                                     <label for="s1q1-op2"></label>
-                                </div>
-                                
-                            </fieldset>
-           
-                            
-                            <fieldset id="s1q2-fieldset" class="hidden">
-                                <legend class="required-label"> Select the type of inter vivos trust.</legend>
-                                                     
-                                <select id="s1q2-dropdown" name="s1q2-dropdown" data-toggle="s1q4-fieldset">
-                                    <option value="" selected>(Select)</option>
-                                    <option value="Alter ego trust">Alter ego trust</option>
-                                    <option value="Personal trust">Personal trust</option>
-                                    <option value="Joint spousal or common-law partner trust">Joint spousal or common-law partner trust</option>
-                                    <option value="Unit trust">Unit trust</option>
-                                    <option value="Mutual funds trust">Mutual funds trust</option>
-                                    <option value="Bare trust">Bare trust</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                                              
-                            </fieldset>
-
-                            <fieldset id="s1q3-fieldset" class="hidden">
-                                <legend class="required-label"> Select the type of testamentary trust.</legend>
-                                                     
-                                <select id="s1q3-dropdown" name="s1q3-dropdown" data-toggle="s1q4-fieldset">
-                                    <option value="" selected>(Select)</option>
-                                    <option value="Alter ego trust">Graduated rate estate (GRE) trust</option>
-                                    <option value="Spousal or common-law partner trust">Spousal or common-law partner trust</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                                              
-                            </fieldset>
-
-                    
-
-                            <fieldset id="s1q4-fieldset" class="hidden" data-radio-group>
-                                <legend class="required-label"> Has the final trust (T3) income tax and information return been filed?</legend>
-                                
-                                <div class="group">
-                                    <input type="radio" id="s1q4-op1" name="s1q4" value="Yes" data-toggle="s1q5-fieldset">
-                                    <label for="s1q4-op1"></label>
-                                </div>
-                                <div class="group">
-                                    <input type="radio" id="s1q4-op2" name="s1q4" value="No" data-toggle="alert-unfiled-final">
-                                    <label for="s1q4-op2"></label>
                                 </div>
                            
                                 <div class="alert hidden" id="alert-unfiled-final">
@@ -176,15 +115,15 @@
                                
                             </fieldset>
 
-                             <fieldset id="s1q5-fieldset" class="hidden" data-radio-group>
+                             <fieldset id="s1q2-fieldset" class="hidden" data-radio-group>
                                 <legend class="required-label"> Have all the notices of assessment been received for the filed tax returns?</legend>
                                 <div class="group">
-                                    <input type="radio" id="s1q5-op1" name="s1q5" value="Yes" data-toggle="s1q6-fieldset">
-                                    <label for="s1q5-op1"></label>
+                                    <input type="radio" id="s1q2-op1" name="s1q2" value="Yes" data-toggle="s1q3-fieldset">
+                                    <label for="s1q2-op1"></label>
                                 </div>
                                 <div class="group">
-                                    <input type="radio" id="s1q5-op2" name="s1q5" value="No" data-toggle="alert-missingnoas">
-                                    <label for="s1q5-op2"></label>
+                                    <input type="radio" id="s1q2-op2" name="s1q2" value="No" data-toggle="alert-missingnoas">
+                                    <label for="s1q2-op2"></label>
                                 </div>
                                 <div class="alert hidden" id="alert-missingnoas">
                                     <div class="alert-error">
@@ -201,15 +140,15 @@
                                 </div>
                                                               
                             </fieldset>
-                            <fieldset id="s1q6-fieldset" class="hidden" data-radio-group>
+                            <fieldset id="s1q3-fieldset" class="hidden" data-radio-group>
                                 <legend class="required-label"> Have all outstanding balances been paid to the CRA?</legend>
                                 <div class="group">
-                                    <input type="radio" id="s1q6-op1" name="s1q6" value="Yes" data-toggle="s1q7-fieldset">
-                                    <label for="s1q6-op1"></label>
+                                    <input type="radio" id="s1q3-op1" name="s1q3" value="Yes" data-toggle="s1q4-fieldset">
+                                    <label for="s1q3-op1"></label>
                                 </div>
                                 <div class="group">
-                                    <input type="radio" id="s1q6-op2" name="s1q6" value="No" data-toggle="alert-outstandingbalance">
-                                    <label for="s1q6-op2"></label>
+                                    <input type="radio" id="s1q3-op2" name="s1q3" value="No" data-toggle="alert-outstandingbalance">
+                                    <label for="s1q3-op2"></label>
                                 </div>
                                 <div class="alert hidden" id="alert-outstandingbalance">
                                     <div class="alert-error">
@@ -225,16 +164,16 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset id="s1q7-fieldset" class="hidden" data-radio-group>
+                            <fieldset id="s1q4-fieldset" class="hidden" data-radio-group>
                                 <legend class="required-label"> Have all outstanding requests been processed by the CRA?<br><span class="sub-label">For example: An adjustment, objection, taxpayer relief request, etc.</span></legend>
                                 
                                 <div class="group">
-                                    <input type="radio" id="s1q7-op1" name="s1q7" value="Yes">
-                                    <label for="s1q7-op1"></label>
+                                    <input type="radio" id="s1q4-op1" name="s1q4" value="Yes">
+                                    <label for="s1q4-op1"></label>
                                 </div>
                                 <div class="group">
-                                    <input type="radio" id="s1q7-op2" name="s1q7" value="No" data-toggle="alert-outstandingcase">
-                                    <label for="s1q7-op2"></label>
+                                    <input type="radio" id="s1q4-op2" name="s1q4" value="No" data-toggle="alert-outstandingcase">
+                                    <label for="s1q4-op2"></label>
                                 </div>
                            
                                 <div class="alert hidden" id="alert-outstandingcase">
@@ -258,31 +197,7 @@
                             <button class="btn btn-primary next-button" type="button">Next</button>
                             <button class="hidden btn btn-primary out-button" type="button" onclick="location.href='chooser.html'">Return to Overview</button>
                         </form>
-                        <div class="lightbox-container" id="s1q1-lightbox">
-                            <div class="lightbox">
-                                <div class="header">
-                                    <div>
-                                        <span class="material-icons">help</span>
-                                        <h3>What type of trust is this?</h3>
-                                    </div>
-                                    
-                                    <button data-closebtn class="btn-tertiary" type="button">
-                                        <span class="material-icons">clear</span>
-                                    </button>
-                                </div>
-                                <div class="lightbox-content">
-                                    A <strong>testamentary trust</strong> is generally created on and as a result of the death of an individual through their will or by court order in relation to their estate under provincial or territorial law.
-                                    <br><br>
-                                    An <strong>inter vivos trust</strong> (also known as a living trust) is created during an individual's lifetime.
-                                    </ul><br>
-                                    
-                                </div>
-                                <div class="buttons">
-                                    <button class="btn-tertiary-brdr" data-closebtn type="button">Close</button>
-                                </div>
-                            </div>
-                        </div>
-
+                       
                   
                     </div>
                 </div>
@@ -332,7 +247,7 @@
                             </fieldset>
 
                             <fieldset id="s2q4-fieldset" class="hidden" data-radio-group>
-                                <legend class="required-label"> What is the estimated total value of the deceased individual's assets?<br><span class="sub-label">Assets may include bank accounts, investment accounts, shares, real estate, etc.</span></legend>
+                                <legend class="required-label"> What is the estimated total value of the trust's assets?<br><span class="sub-label">Assets may include investment accounts, shares, real estate, etc.</span></legend>
                                 <div class="group">
                                     <input type="radio" id="s2q4-op1" name="s2q4" value="$0 - $99,999" data-toggle="s2q5-fieldset">
                                     <label for="s2q4-op1"></label>
@@ -351,48 +266,18 @@
                                 </div>
                             </fieldset>
 
-                            <fieldset id="s2q5-fieldset" class="hidden" data-radio-group required>
-                                <legend class="required-label"> Is there any real estate other than the primary residence?</legend>
-                                <div class="group">
-                                    <input type="radio" id="s2q5-op1" name="s2q5" value="Yes" data-toggle="s2q6-fieldset">
-                                    <label for="s2q5-op1"></label>
-                                </div>
-                                <div class="group">
-                                    <input type="radio" id="s2q5-op2" name="s2q5" value="No" data-toggle="s2q7-fieldset">
-                                    <label for="s2q5-op2"></label>
-                                </div>
-                            </fieldset>
-
-                            <fieldset id="s2q6-fieldset" class="hidden" data-radio-group required>
-                                <legend class="required-label"> What is the estimated total value of the deceased individual's real estate (including the primary residence)?<br><span class="sub-label">Real estate may include cottages, land, rental properties, etc.</span></legend>
-                                <div class="group">
-                                    <input type="radio" id="s2q6-op1" name="s2q6" value="$0 - $99,999" data-toggle="s2q7-fieldset">
-                                    <label for="s2q6-op1"></label>
-                                </div>
-                                <div class="group">
-                                    <input type="radio" id="s2q6-op2" name="s2q6" value="$100,000 - $499,999" data-toggle="s2q7-fieldset">
-                                    <label for="s2q6-op2"></label>
-                                </div>
-                                <div class="group">
-                                    <input type="radio" id="s2q6-op3" name="s2q6" value="$500, 000 - $999,999" data-toggle="s2q7-fieldset">
-                                    <label for="s2q6-op3"></label>
-                                </div>
-                                <div class="group">
-                                    <input type="radio" id="s2q6-op4" name="s2q6" value="$1,000,000 or more" data-toggle="s2q7-fieldset">
-                                    <label for="s2q6-op4"></label>
-                                </div>
-                            </fieldset>
+            
                            
-                            <fieldset id="s2q7-fieldset" class="hidden" data-radio-group>
+                            <fieldset id="s2q5-fieldset" class="hidden" data-radio-group>
                                 <legend class="required-label"> Are all beneficiaries Canadian residents?
                                 </legend>
                                 <div class="group">
-                                    <input type="radio" id="s2q7-op1" name="s2q7" value="Yes">
-                                    <label for="s2q7-op1"></label>
+                                    <input type="radio" id="s2q5-op1" name="s2q5" value="Yes">
+                                    <label for="s2q5-op1"></label>
                                 </div>
                                 <div class="group">
-                                    <input type="radio" id="s2q7-op2" name="s2q7" value="No">
-                                    <label for="s2q7-op2"></label>
+                                    <input type="radio" id="s2q5-op2" name="s2q5" value="No">
+                                    <label for="s2q5-op2"></label>
                                 </div>
                             </fieldset>
                            
@@ -457,7 +342,7 @@
                                 <input class="half-width" type="text" id="s3-lvl3-repemail" name="s3-lvl3-repemail">
                               
 
-                                <label class="required-label" for="s3-lvl3-reprole">Role</label>                        
+                                <label class="required-label" for="s3-lvl3-reprole">Role of representative</label>                        
                                 <select id="s3-lvl3-reprole" name="s3-lvl3-reprole">
                                     <option value="" selected>(Select)</option>
                                   
@@ -718,84 +603,10 @@
                             </label>
                             <input class="half-width" type="text" id="s5q3-field" name="s5q3">
                         </fieldset>
-                        <fieldset class="ml-16px hidden" id="s5q4-fieldset" required>
-                            <legend id="docreq-label" class="required-label" for="s5q3-field">Upload documents to support your request
-                                <br><span class="sub-label">Documents that have already been sent do not need to be uploaded again.</span>
-                            </legend>
-
-                            <legend id="docrem-label" class="hidden required-label" for="s5q4-field">Upload the remaining documents to support your request
-                                <br><span class="sub-label">Documents that have already been sent do not need to be uploaded again.</span>
-                            </legend>
-                            
-                            <legend id="docopt-label" class="hidden" for="s5q4-field">Upload any additional documents to support your request
-                                <br><span class="sub-label">Documents that have already been sent do not need to be uploaded again.</span>
-                            </legend>
-                            
-                            <table id="tb-upload-doc" class="table dynamic-table" cellpadding="0" cellspacing="0" required>
-                                <thead>
-                                    <tr>
-                                        <th>File name</th>
-                                        <th>Description</th>
-                                        <th>File size</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-placeholder="You have not uploaded any documents.">
-                                </tbody>
-                            </table>
-                            <div class="buttons">
-                                <button class="btn-secondary close" type="button" data-togglelb="uploaddoc-lightbox">
-                                <span class="material-icons">
-                                add
-                                </span>
-                                Attach document</button>
-                            </div>
-                            <div id="uploadedfile-info" style="text-align:right;">
-                                Total size: <span id="uploadedfiles-size"></span><br>
-                                Maximum total file upload size is 500 MB
-                            </div>
-                        </fieldset>
+                        
                     </form>
                     </div>
-                    <div class="lightbox-container" id="uploaddoc-lightbox">
-                        <div class="lightbox">
-                            <div class="header">
-                                <h3>Upload document</h3>
-                                <button class="btn-tertiary" type="button" data-closebtn>
-                                <span class="material-icons">clear</span></button>
-                            </div>
-                            <div class="lightbox-content">
-                                <form id="s5-doc-form">
-                                    <div class="required">Fields marked with asterisk (<span class="ast">*</span>) are required.</div>
-                                    <br>
-                                    <label for="s5lb-upload" class="required-label">Upload your document</label>
-                                    <span class="ml-16px">Allowable file types: .pdf, .doc, .docx, .xls, .xlsx, .rtf, .txt, .jpg, .jpeg, .tiff, .tif, .xps
-                                    </span><br><button id="s5-browsebtn" type="button" class="ml-16px btn-secondary">Browse</button>
-                                    <span class="fileName" id="s5-filename-display" data-formelement data-placeholder="No file chosen.">No file chosen.</span>
-
-                                    <input type="hidden" id="s5-filename" name="s5-filename">
-                                    
-                                    
-                                    <label for="s5lb-descfield" class="required-label">Provide a brief description of your document (maximum 150 characters).</label>
-                                    <input type="text" id="s5-desc" name="s5-desc" maxlength="150" required>
-                                    <input type="hidden" id="s5-size" name="s5-size">
-                                </form>
-                                <div id="s5-browsewind" class="browse-window hidden">
-                                    <div class="browse-window-header">Browse</div>
-                                        <ul class="file-list">
-                                            <li id="will-doc" class="file-item"><span class="material-icons file-icon">insert_drive_file</span>CopyofWill.docx</li>
-                                            <li id="detailedassets-doc"  class="file-item"><span class="material-icons file-icon">insert_drive_file</span>DetailedAssetsList.docx</li>
-                                            <li id="assetdistribution-doc" class="file-item"><span class="material-icons file-icon">insert_drive_file</span>AssetDistribution_List.docx</li>
-                                            <li id="resume-doc" class="file-item"><span class="material-icons file-icon">insert_drive_file</span>Resume2025.docx</li>
-                                        </ul>
-                                </div>
-                            </div>
-                            <div class="buttons">
-                                <button class="btn-primary" type="button" data-submit>Upload document</button>
-                                <button class="btn-tertiary" type="button" data-closebtn>Cancel</button>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <button class="btn btn-secondary back-button" type="button">Back</button>
                     <button class="btn btn-primary next-button" type="button">Next</button>
                 </div>

@@ -603,6 +603,9 @@ padding:8px;
 .optional-label {
   padding-left:32px;
 }
+.optional-label .sub-label {
+  margin-left: -16px; 
+}
 
 .required-label span {
   font-size:16pt;
@@ -629,7 +632,11 @@ input {
   padding:8px;
   /* margin:0 16px; */
 }
-
+input:disabled,
+.disabled {
+  background-color:#BDBDBD;
+  color:#888;
+}
 label, fieldset, legend {
   display: block;
   padding:0;
@@ -781,6 +788,12 @@ textarea {
 .period-field {
   width:300px !important;
 }
+.multifield-wrapper {
+  display:flex;
+    align-items:stretch;
+    position: relative;
+     overflow: visible; /* important */
+}
 
 .input-wrapper {
   display:flex;
@@ -790,6 +803,7 @@ textarea {
     position: relative;
      overflow: visible; /* important */
 }
+
 
 .input-wrapper .prefix {
   border-right:1px solid #616161;
