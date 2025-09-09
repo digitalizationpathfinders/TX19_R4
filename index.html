@@ -55,7 +55,7 @@
                             <ul>
                                 <li>A copy of the  director's or shareholder's resolution authorizing the dissolution
                                 </li>
-                                <li>A copy of the Letter of Consent to dissolve or the Certificate of Dissolution (if available).
+                                <li>A copy of the Letter of Consent to dissolve or the Certificate of Dissolution (if available)
                                 </li>
                                 <li>Statement and plan of distribution of assets at the date of wind-up
                                 </li>
@@ -231,7 +231,7 @@
                                 <div class="alert-info">
                                     <div class="line"></div>
                                     <div><span class="material-icons">
-                                        report
+                                        information
                                         </span>
                                     </div>
                                     <div class="line"></div>
@@ -377,12 +377,13 @@
                             <legend class="required-label">
                                 What type of clearance are you requesting?
                             </legend>
+                           
                             <div class="group">
-                                <input type="radio" id="s3q1-op1" name="s3q1" value="Partial distribution - T2 corporation income tax return" data-toggle="s3q2-fieldset,s3q3-fieldset">
+                                <input type="radio" id="s3q1-op1" name="s3q1" value="Final distribution - T2 corporation income tax return" data-toggle="s3q2-fieldset,s3q3-fieldset">
                                 <label for="s3q1-op1"></label>
                             </div>
-                            <div class="group">
-                                <input type="radio" id="s3q1-op2" name="s3q1" value="Final distribution - T2 corporation income tax return" data-toggle="s3q2-fieldset,s3q3-fieldset">
+                             <div class="group">
+                                <input type="radio" id="s3q1-op2" name="s3q1" value="Partial distribution - T2 corporation income tax return" data-toggle="s3q2-fieldset,s3q3-fieldset">
                                 <label for="s3q1-op2"></label>
                             </div>
                             
@@ -403,7 +404,7 @@
                             </div>
                         </fieldset>
                         <fieldset class="hidden" id="s3q3-fieldset">
-                            <label for="s3q3-field" class="optional-label">Wind up date
+                            <label for="s3q3-field" class="optional-label">Wind-up date
                             <br><span class="sub-label">The date planned to distribute assets</span>
                             </label>
                             
@@ -449,7 +450,7 @@
                             <strong>Documents you need to provide:</strong>
                             <ul>
                                 <li>A copy of the director’s or shareholder’s resolution authorizing the dissolution</li>
-                                <li>A copy of the Letter of Consent to dissolve or the Certificate of Dissolution (if available).</li>
+                                <li>A copy of the Letter of Consent to dissolve or the Certificate of Dissolution (if available)</li>
                                 <li>Statement and plan of distribution of assets at the date of wind-up</li>
                             </ul>
                         </div>
@@ -468,7 +469,7 @@
                                 <label for="s4q1-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s4q1-op3" name="s4q1" value="No, I have not submitted any">
+                                <input type="radio" id="s4q1-op3" name="s4q1" value="No, I have not submitted any" data-toggle="alert-warnsubdoc">
                                 <label for="s4q1-op3"></label>
                             </div>
                         </fieldset>
@@ -476,15 +477,15 @@
                             <legend class="required-label">
                                 How were the documents submitted?</legend>
                             <div class="group">
-                                <input type="radio" id="s4q2-op1" name="s4q2" value="Mail or fax" data-toggle="s4q3-fieldset,alert-subdoc">
+                                <input type="radio" id="s4q2-op1" name="s4q2" value="Mail or fax" data-toggle="s4q3-fieldset,alert-warnsubdoc">
                                 <label for="s4q2-op1"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s4q2-op2" name="s4q2" value="Electronically" data-toggle="s4q3-fieldset, alert-subdoc">
+                                <input type="radio" id="s4q2-op2" name="s4q2" value="Electronically" data-toggle="s4q3-fieldset, alert-warnsubdoc">
                                 <label for="s4q2-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s4q2-op3" name="s4q2" value="Both" data-toggle="s4q3-fieldset, alert-subdoc">
+                                <input type="radio" id="s4q2-op3" name="s4q2" value="Both" data-toggle="s4q3-fieldset, alert-warnsubdoc">
                                 <label for="s4q2-op3"></label>
                             </div>
                         </fieldset>
@@ -495,7 +496,7 @@
                             <input class="half-width" type="text" id="s4q3-field" name="s4q3">
                         </fieldset>
                         <br>
-                        <div class="alert hidden" id="alert-subdoc">
+                        <div class="alert hidden" id="alert-warnsubdoc">
                             <div class="alert-warning">
                                 <div class="line"></div>
                                 <div><span class="material-icons">
@@ -506,6 +507,19 @@
                             </div>
                             <div class="alert-content">
                                 After you submit your request for a clearance certificate, you <strong>must</strong> upload the remaining supporting documents listed above using the "Submit supporting documents" button found on the confirmation page.
+                            </div>
+                        </div>
+                        <div class="alert hidden" id="alert-infosubdoc">
+                            <div class="alert-info">
+                                <div class="line"></div>
+                                <div><span class="material-icons">
+                                    information
+                                    </span>
+                                </div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="alert-content">
+                                After you submit your request for a clearance certificate, you will be able to upload any additional supporting documents using the "Submit supporting documents" button found on the confirmation page.
                             </div>
                         </div>
                       

@@ -440,7 +440,26 @@ class Step4Handler {
 }
 class Step5Handler {
     constructor() {
-    
+        this.submissionMethodRadios = document.querySelectorAll("#s5q2-fieldset input[type=radio]");
+        this.haveSubmittedAllDocuments = document.getElementById("s5q1-op1");
+        this.haveSubmittedAllDocuments.addEventListener("click", ()=>{
+            this.addDataToggles();
+        });
+    }
+
+    addDataToggles(){
+        
+        this.submissionMethodRadios.forEach(radio => {
+            var currentToggle = radio.getAttribute("data-toggle").toString();
+            console.log(currentToggle)
+            var newToggle = currentToggle.replace("alert-warnsubdoc", "alert-infosubdoc");
+                        console.log(newToggle)
+
+           radio.setAttribute("data-toggle", newToggle)
+            
+            
+        })
+        
     }
 
     

@@ -1244,6 +1244,7 @@ textarea {
  .alert-info span {
   color:#269ABC;
   line-height: 1.25 !important;
+  max-width:24px;
  }
 
  .alert-info .line {
