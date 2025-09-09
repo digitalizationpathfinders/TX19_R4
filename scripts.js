@@ -786,13 +786,7 @@ class DatepickerObj {
         if (stepContent) stepContent.classList.remove("modal-open");
     }
 
-    // addChangeListener(){
-    //     this.input.addEventListener('change', ()=> {
-    //         console.log("inside the datepick obj", this.input.value)
-    //         return this.input.value;
-
-    //     });
-    // }
+  
     
     static closeAll() {
         document.querySelectorAll(".datepicker-modal").forEach(modal => {

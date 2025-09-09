@@ -207,7 +207,7 @@ class Step2Handler {
             editButton: false, 
             editIndex: null,
             reviewPanel: false,
-            labels: ["Trust's name", "Trust type", "Trust number"]
+            labels: ["Trust's name", "Trust type", "Trust account number"]
         })
     
     }
@@ -405,162 +405,43 @@ class Step4Handler {
     constructor() {
         this.q3Lightbox = new FormLightbox(document.getElementById("s4q3-lightbox"));
 
-         this.fiscalDatepicker = new DatepickerObj("s4q2-field");
+        this.fiscalDatepicker = new DatepickerObj("s4q2-field");
         this.windupDatepicker = new DatepickerObj("s4q3-field");
+        this.windupField = document.getElementById("s4q3-field");
+        this.fiscalField = document.getElementById("s4q2-field");
+        this.windupWrapper = document.getElementById("windup-wrapper");
+        this.sameAsCheckbox = document.getElementById("s4q3-op1");
+
+        this.sameAsCheckbox.addEventListener("click", ()=> {
+            this.setWindupField(this.sameAsCheckbox.checked, this.windupWrapper);
+            this.windupField.value = this.fiscalField.value;
+        });
+
+        this.fiscalField.addEventListener("dateSelected", (e) => {
+            if(this.sameAsCheckbox.checked){
+                this.windupField.value = e.detail.value;
+            }
+        })
     }
+    
+    setWindupField(disabled, wrapper){
+        this.windupField.disabled = disabled;
+        const input = wrapper.querySelector("input");
+        const suffix = wrapper.querySelector(".suffix");
+
+        if (disabled) {
+            input.disabled = true;
+            suffix.classList.add("disabled");
+            suffix.style.pointerEvents = "none"; // prevent clicks
+        } else {
+            input.disabled = false;
+            suffix.classList.remove("disabled");
+            suffix.style.pointerEvents = "auto";
+        }
+    }  
 }
 class Step5Handler {
-    constructor() {
-    
-        this.documentsTable = new TableObj("tb-upload-doc");
-        this.uploadDocLightbox = new FormLightbox(document.getElementById("uploaddoc-lightbox"));
-        this.documentUploadFieldset = document.getElementById("s5q4-fieldset");
-
-
-        this.browseFileButton = document.getElementById("s5-browsebtn");
-        this.browseWindow = document.getElementById("s5-browsewind");
-        this.fileList = document.querySelectorAll('.file-item');
-        if(DataManager.getData("taskNum") === 3){
-            this.fileList[0].classList.add("hidden");
-        }
-    
-        this.fileNameDisplay = document.getElementById("s5-filename-display");
-        this.hiddenFileInput = document.getElementById("s5-filename");
-        this.hiddenFileSize = document.getElementById("s5-size");
-
-        this.uploadedDocSelected = document.querySelectorAll('input[name="s5q1"]');
-        this.uploadMethod = document.querySelectorAll('input[name="s5q2"]');
-       
-        if(!this.browseFileButton) return; 
-
-        this.uploadedDocSelected.forEach(radio => {
-            radio.addEventListener('click', () => {
-                this.updateDocTableLabel(radio.id);
-            });
-            radio.addEventListener('change', () => {
-                this.updateDocTableLabel(radio.id);
-            });
-          });
-       
-
-        this.browseFileButton.addEventListener("click", () => {
-            this.browseWindow.classList.remove('hidden');
-        });
-        this.fileList.forEach((file) => {
-            file.addEventListener('click', () =>{
-                this.selectFile(file);
-                this.browseWindow.classList.add('hidden');
-            });
-        }); 
-
-        document.addEventListener("lightboxSubmitted", (event) => {
-            if (event.detail.lightboxId === "uploaddoc-lightbox") {
-                this.handleFormSubmit(event.detail.formData);
-            }
-        });
-        // Listen for edit events
-        document.addEventListener("editRowEvent", (event) => {
-            if (event.detail.tableID === "tb-upload-doc") {
-                this.openEditLightbox(event.detail.index, event.detail.rowData);
-            }
-        });
-        document.addEventListener("fileSizeUpdated", () => {
-            this.calculateTotalFileSize();
-        });
-        document.addEventListener("rowDeleted", () => {
-            this.calculateTotalFileSize();
-        });
-        
-
-        this.calculateTotalFileSize();
-    }
-
-    updateDocTableLabel(radioID){
-        var reqLabel = document.getElementById("docreq-label");
-        var remLabel = document.getElementById("docrem-label");
-        var optLabel = document.getElementById("docopt-label");
-
-        if (radioID == 's5q1-op1') {
-               
-            reqLabel.classList.add('hidden');
-            remLabel.classList.add('hidden');
-            optLabel.classList.remove('hidden');
-     
-        }
-        else if(radioID == 's5q1-op2') {
-            reqLabel.classList.add('hidden');
-            remLabel.classList.remove('hidden');
-            optLabel.classList.add('hidden');
-        } 
-        else {
-            reqLabel.classList.remove('hidden');
-            remLabel.classList.add('hidden');
-            optLabel.classList.add('hidden');
-        }
-    }
-    selectFile(file){
-        
-        let fileName = file.childNodes[1].nodeValue.trim();
-        this.fileNameDisplay.textContent = fileName;
-        this.hiddenFileInput.value = fileName;
-        const fakeSize = Math.floor(Math.random() * 450) + 50; // Generates 50-500 KB
-        this.hiddenFileSize.value = fakeSize; // Store size as a number
-        
-    }
-
-    openEditLightbox(index, rowData) {
-       
-        // Set the index of the row being edited
-        this.uploadDocLightbox.setEditIndex(index);
-
-        // Fill form with existing row data
-        this.uploadDocLightbox.populateForm(rowData);
-         // Manually update filename span
-        if (rowData["s5-filename"]) {
-            const filenameDisplay = document.getElementById("s5-filename-display");
-        if (filenameDisplay) {
-            filenameDisplay.textContent = rowData["s5-filename"];
-        }
-    }
-
-        // Open the lightbox
-        this.uploadDocLightbox.openLightbox();
-    }
-
-    handleFormSubmit(formData) {
-        const editIndex = this.uploadDocLightbox.getEditIndex();
-        
-
-        let fileSize = parseInt(formData["s5-size"], 10) || 0;
-        formData["s5-size"] = fileSize < 1024 ? `${fileSize} KB` : `${(fileSize / 1024).toFixed(2)} MB`;
-    
-        if (editIndex !== null && editIndex !== undefined && editIndex !== "") {
-            this.documentsTable.rows[editIndex] = formData;
-            this.uploadDocLightbox.clearEditIndex();
-            this.documentsTable.refreshTable();
-        } else {
-            this.documentsTable.addRow(formData);
-          
-        }       
-        document.dispatchEvent(new Event("fileSizeUpdated")); // Notify that the file size changed
-
-    }
-
-    calculateTotalFileSize() {
-        let totalSize = this.documentsTable.rows.reduce((sum, row) => {
-            let size = parseInt(row["s5-size"], 10) || 0; // Ensure size is numeric
-            return sum + size;
-        }, 0);
-    
-        let displaySize;
-        if (totalSize < 1024) {
-            displaySize = `${totalSize} KB`; // Keep KB format
-        } else {
-            displaySize = `${(totalSize / 1024).toFixed(2)} MB`; // Convert to MB with two decimals
-        }
-    
-        document.getElementById("uploadedfiles-size").textContent = displaySize;
-    }
+    constructor() {    }
 
     
 }
@@ -1178,6 +1059,9 @@ class DatepickerObj {
     selectDate(year, month, day) {
         const formatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         this.input.value = formatted;
+        this.input.dispatchEvent(new CustomEvent('dateSelected', {
+            detail: { value: this.input.value}
+        }));
         this.modal.classList.add("hidden");
     }
 

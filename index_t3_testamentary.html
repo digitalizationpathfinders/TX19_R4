@@ -327,7 +327,7 @@
                                     <div class="line"></div>
                                 </div>
                                 <div class="alert-content">
-                                    The clearance certificate will be mailed to you at the above address.
+                                      The clearance certificate will be mailed to the address we have on file, as displayed above.
                                 </div>
                             </div>
                             
@@ -488,23 +488,23 @@
                                 <div class="datepicker-modal hidden"></div>
                             </div>
                         </fieldset>
-                        <fieldset class="hidden" id="s4q3-fieldset">
-                            <label for="s4q3-field" class="required-label">Wind up date    
-                                <a data-toggleLB="s4q3-lightbox">
-                                    <span class="material-icons">
-                                    help
-                                    </span>
-                                </a>
+                              <fieldset class="hidden" id="s4q3-fieldset">
+                            <label for="s4q3-field" class="optional-label">Wind up date
+                            <br><span class="sub-label">The date planned to distribute assets</span>
                             </label>
-                           
-                            <div class="input-wrapper ml-16px">
-                                <input class="" type="text" id="s4q3-field" name="s4q3" placeholder="YYYY-MM-DD">
-                                <div class="suffix">
-                                    <span class="material-icons">calendar_month</span>
-                                   
-                                    
-                               </div>
-                                <div class="datepicker-modal hidden"></div>
+                            
+                           <div class="multifield-wrapper">
+                                <div class="input-wrapper ml-16px" id="windup-wrapper">
+                                    <input class="" type="text" id="s4q3-field" name="s4q3" placeholder="YYYY-MM-DD">
+                                    <div class="suffix">
+                                        <span class="material-icons">calendar_month</span>
+                                    </div>
+                                    <div class="datepicker-modal hidden"></div>
+                                </div>
+                                <div class="group">
+                                 <input type="checkbox" id="s4q3-op1" name="s4q3" value="Same as fiscal end date">
+                        <label for="s4q3-op1"></label> 
+                        </div>
                             </div>
                         </fieldset>
                         <br>
@@ -577,7 +577,7 @@
                                 <label for="s5q1-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q1-op3" name="s5q1" value="No, I have not submitted any" data-toggle="s5q4-fieldset">
+                                <input type="radio" id="s5q1-op3" name="s5q1" value="No, I have not submitted any" data-toggle="">
                                 <label for="s5q1-op3"></label>
                             </div>
                         </fieldset>
@@ -585,15 +585,15 @@
                             <legend class="required-label">
                                 How were the documents submitted?</legend>
                             <div class="group">
-                                <input type="radio" id="s5q2-op1" name="s5q2" value="Mail or fax" data-toggle="s5q3-fieldset,s5q4-fieldset">
+                                <input type="radio" id="s5q2-op1" name="s5q2" value="Mail or fax" data-toggle="s5q3-fieldset">
                                 <label for="s5q2-op1"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q2-op2" name="s5q2" value="Electronically" data-toggle="s5q3-fieldset,s5q4-fieldset">
+                                <input type="radio" id="s5q2-op2" name="s5q2" value="Electronically" data-toggle="s5q3-fieldset">
                                 <label for="s5q2-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q2-op3" name="s5q2" value="Both" data-toggle="s5q3-fieldset,s5q4-fieldset">
+                                <input type="radio" id="s5q2-op3" name="s5q2" value="Both" data-toggle="s5q3-fieldset">
                                 <label for="s5q2-op3"></label>
                             </div>
                         </fieldset>

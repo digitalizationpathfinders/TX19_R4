@@ -401,12 +401,42 @@ class Step3Handler {
    
 }
 class Step4Handler {
-    constructor() {
+        constructor() {
         this.q3Lightbox = new FormLightbox(document.getElementById("s4q3-lightbox"));
 
         this.fiscalDatepicker = new DatepickerObj("s4q2-field");
         this.windupDatepicker = new DatepickerObj("s4q3-field");
+        this.windupField = document.getElementById("s4q3-field");
+        this.fiscalField = document.getElementById("s4q2-field");
+        this.windupWrapper = document.getElementById("windup-wrapper");
+        this.sameAsCheckbox = document.getElementById("s4q3-op1");
+        this.sameAsCheckbox.addEventListener("click", ()=> {
+            this.setWindupField(this.sameAsCheckbox.checked, this.windupWrapper);
+            this.windupField.value = this.fiscalField.value;
+        });
+
+        this.fiscalField.addEventListener("dateSelected", (e) => {
+            if(this.sameAsCheckbox.checked){
+                this.windupField.value = e.detail.value;
+            }
+        })
     }
+    
+    setWindupField(disabled, wrapper){
+        this.windupField.disabled = disabled;
+        const input = wrapper.querySelector("input");
+        const suffix = wrapper.querySelector(".suffix");
+
+        if (disabled) {
+            input.disabled = true;
+            suffix.classList.add("disabled");
+            suffix.style.pointerEvents = "none"; // prevent clicks
+        } else {
+            input.disabled = false;
+            suffix.classList.remove("disabled");
+            suffix.style.pointerEvents = "auto";
+        }
+    }  
 }
 class Step5Handler {
     constructor() {
@@ -444,7 +474,7 @@ class Step6Handler {
     
         const steps = [
             { stepNum: 1, title: "Eligibility", storageKey: "stepData_1" },
-            { stepNum: 2, title: "Estate trust information", storageKey: "stepData_2", labels: ["Name", "Social insurance number", "Date of death", "Trust account number"] },
+            { stepNum: 2, title: "Estate trust information", storageKey: "stepData_2", labels: ["Name", "Trust type", "Trust account number", "Social insurance number", "Date of death"] },
             { stepNum: 3, title: "Representative's information", storageKey: "stepData_3" },
             { stepNum: 4, title: "Type of clearance", storageKey: "stepData_4" },
              { stepNum: 5, title: "Supporting documentation", storageKey: "stepData_5" },
@@ -462,9 +492,9 @@ class Step6Handler {
 
             }
             if (stepNum === 2) {
-           
+                console.log(accountInfo)
             data = { ...accountInfo, ...data }; 
-             delete data.accountType;
+             //delete data.accountType;
            }
            if (stepNum === 3) {
                let legalReps = DataManager.getData("legalReps") || [];
@@ -1026,6 +1056,9 @@ class DatepickerObj {
     selectDate(year, month, day) {
         const formatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         this.input.value = formatted;
+        this.input.dispatchEvent(new CustomEvent('dateSelected', {
+            detail: { value: this.input.value}
+        }));
         this.modal.classList.add("hidden");
     }
 
