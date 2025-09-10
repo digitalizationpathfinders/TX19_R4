@@ -398,18 +398,18 @@ class Step3Handler {
 
 class Step4Handler {
     constructor() {
-        this.submissionMethodRadios = document.querySelectorAll("#s5q2-fieldset input[type=radio]");
-        this.submittedDocsRadios = document.querySelectorAll("#s5q1-fieldset input[type=radio]");
+        this.submissionMethodRadios = document.querySelectorAll("#s4q2-fieldset input[type=radio]");
+        this.submittedDocsRadios = document.querySelectorAll("#s4q1-fieldset input[type=radio]");
         this.submittedDocsRadios.forEach(radio => {
 
             radio.addEventListener("change", () => {
-                if (radio.id === 's5q1-op1')
+                if (radio.id === 's4q1-op1')
                     this.addDataToggles("alert-warnsubdoc", "alert-infosubdoc")
                 else
                     this.addDataToggles("alert-infosubdoc", "alert-warnsubdoc")
             })
         })
-        this.haveSubmittedAllDocuments = document.getElementById("s5q1-op1");
+        this.haveSubmittedAllDocuments = document.getElementById("s4q1-op1");
         this.haveSubmittedAllDocuments.addEventListener("click", () => {
             this.addDataToggles();
         });

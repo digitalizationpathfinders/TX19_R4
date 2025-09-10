@@ -214,7 +214,7 @@ class Step2Handler {
 
         new PanelObj({
             container: this.trustContainer,
-            title: "Estate trust information on file",
+            title: "Trust information on file",
             data: shownData,
             editButton: false, 
             editIndex: null,
@@ -517,7 +517,7 @@ class Step6Handler {
     
         const steps = [
             { stepNum: 1, title: "Eligibility", storageKey: "stepData_1" },
-            { stepNum: 2, title: "Estate trust information", storageKey: "stepData_2", labels: ["Name", "Trust type", "Trust account number", "Social insurance number", "Date of death"] },
+            { stepNum: 2, title: "Estate trust information", storageKey: "stepData_2", labels: ["Estate of", "Trust type", "Trust account number", "Social insurance number", "Date of death"] },
             { stepNum: 3, title: "Representative's information", storageKey: "stepData_3" },
             { stepNum: 4, title: "Type of clearance", storageKey: "stepData_4" },
              { stepNum: 5, title: "Supporting documentation", storageKey: "stepData_5" },
@@ -578,13 +578,13 @@ class Step6Handler {
 
                    let questionLabel = labels && labels[index] ? labels[index] : this.getLabelForInput(key);
                    formattedData[questionLabel] = data[key]; // Assign label instead of raw key
-                   if (stepNum === 3) {
+                   if (stepNum === 4) {
                 
                         Object.keys(data).forEach((key) => {
                         let label = this.getLabelForInput(key);
                         let value = data[key];
                     
-                        if(key === "s3q2" || key === "s3q3"){
+                        if(key === "s4q2" || key === "s4q3"){
                             value = this.formatDate(value);
                         }
                      
