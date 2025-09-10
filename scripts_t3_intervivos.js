@@ -123,6 +123,19 @@ class Stepper {
                 handler.updateSingleLevel3Rep();
             }
         }
+        if (stepNum === 4) {
+            const fiscalDate = document.querySelector("#s4q2-field")?.value;
+            const windupField = document.querySelector("#s4q3-field");
+            const sameAsCheckbox = document.querySelector("#s4q3-op1");
+
+            if (sameAsCheckbox && sameAsCheckbox.checked && fiscalDate) {
+                // ✅ Store the actual fiscal date as windup date
+                dataObj[windupField.name] = fiscalDate;
+            } else if (windupField && windupField.value) {
+                // ✅ Store whatever the user entered normally
+                dataObj[windupField.name] = windupField.value;
+            }
+        }
         if (stepNum === 5) {
             let step4Handler = this.stepHandlers[stepNum]; 
             if (step4Handler && step4Handler.documentsTable) {
@@ -441,8 +454,39 @@ class Step4Handler {
     }  
 }
 class Step5Handler {
-    constructor() {    }
+    constructor() {
+        this.submissionMethodRadios = document.querySelectorAll("#s5q2-fieldset input[type=radio]");
+        this.submittedDocsRadios = document.querySelectorAll("#s5q1-fieldset input[type=radio]");
+        this.submittedDocsRadios.forEach(radio => {
+            
+            radio.addEventListener("change", ()=>{
+                if(radio.id === 's5q1-op1')
+                    this.addDataToggles("alert-warnsubdoc", "alert-infosubdoc")
+                else 
+                   this.addDataToggles("alert-infosubdoc", "alert-warnsubdoc")
+            })
+        })
+        this.haveSubmittedAllDocuments = document.getElementById("s5q1-op1");
+        this.haveSubmittedAllDocuments.addEventListener("click", ()=>{
+            this.addDataToggles();
+        });
+    }
 
+    addDataToggles(oldToggle, newToggle){
+        
+        this.submissionMethodRadios.forEach(radio => {
+            var currentToggle = radio.getAttribute("data-toggle").toString();
+            
+            var newToggleStr = currentToggle.replace(oldToggle, newToggle);
+
+           radio.setAttribute("data-toggle", newToggleStr)
+           if(oldToggle)
+            document.getElementById(oldToggle).classList.add("hidden");
+            
+            
+        })
+        
+    }
     
 }
 class Step6Handler {
@@ -530,16 +574,7 @@ class Step6Handler {
                console.log(formattedData)
            }
 
-           else if (stepNum === 5 && data["uploadedDocuments"]) {
-               subTableData = {
-                   title: "Attachments",
-                   headers: ["Name", "Description", "File Size"],
-                   columns: ["s5-filename", "s5-desc", "s5-size"],
-                   rows: data["uploadedDocuments"] || [] // Ensure it's always an array
-               };
-               
-               delete data["uploadedDocuments"];
-           }
+         
 
            if (stepNum !== 3) { // Avoid overwriting Step 3 data
                Object.keys(data).forEach((key, index) => {
@@ -547,7 +582,20 @@ class Step6Handler {
 
                    let questionLabel = labels && labels[index] ? labels[index] : this.getLabelForInput(key);
                    formattedData[questionLabel] = data[key]; // Assign label instead of raw key
-               });
+                    if (stepNum === 3) {
+                
+                        Object.keys(data).forEach((key) => {
+                        let label = this.getLabelForInput(key);
+                        let value = data[key];
+                    
+                        if(key === "s3q2" || key === "s3q3"){
+                            value = this.formatDate(value);
+                        }
+                     
+                        formattedData[label] = value;
+                        });
+                    }
+                });
            }
    
            // Generate panel for each step
@@ -567,7 +615,19 @@ class Step6Handler {
             this.stepper.setActive(this.stepper.steps[event.detail.index]);
         });
     }
+    formatDate(value) {
+        if (!value)
+            return "N/A";
+        const date = new Date(value);
 
+        if (isNaN(date))
+            return value;
+        return date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+    }
 
 
     getLabelForInput(name) {
