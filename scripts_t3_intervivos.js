@@ -249,9 +249,9 @@ class Step3Handler {
 
         this.lvl2repRoles = document.getElementById("s3-reprole-lb");
         this.lvl3repRoles = document.getElementById("s3-lvl3-reprole");
-        const initialFlowType = document.querySelector('input[name="s1q1"]:checked');
+        const initialFlowType = DataManager.getData("accountInfo").flowType;
         if (initialFlowType) {
-            this.updateRoleDropdowns(initialFlowType.id);
+            this.updateRoleDropdowns(initialFlowType);
         }
 
         this.renderInitialView();
@@ -321,27 +321,29 @@ class Step3Handler {
             }
         });
 
-        document.querySelectorAll('input[name="s1q1"]').forEach(radio => {
-            radio.addEventListener("change", (e) => {
-                this.updateRoleDropdowns(e.target.id);
-            })
-        })
+        // document.querySelectorAll('input[name="s1q1"]').forEach(radio => {
+        //     radio.addEventListener("change", (e) => {
+        //         this.updateRoleDropdowns(e.target.id);
+        //     })
+        // })
     }
     
     updateRoleDropdowns(flowType) {
+        
         const options = {
             intervivos: `<option value="Trustee">Trustee</option><option value="Other">Other</option>`,
             testamentary:`<option value="Trustee">Trustee</option>
                <option value="Executor">Executor</option>
                <option value="Liquidator">Liquidator</option>
-               <option value="Administrator">Administrator</option>`
+               <option value="Administrator">Administrator</option>
+               <option value="Other">Other</option>`
         };
         this.lvl2repRoles.innerHTML = '<option value="" selected>(Select)</option>';
         this.lvl3repRoles.innerHTML = '<option value="" selected>(Select)</option>';
-        const selected = flowType === 's1q1-op1' ? 'intervivos' : 'testamentary';
-       
+        const selected = flowType;
+
         this.lvl2repRoles.innerHTML += options[selected];
-       this.lvl3repRoles.innerHTML += options[selected];
+        this.lvl3repRoles.innerHTML += options[selected];
     }
     handleFormSubmit(formData) {
         const editIndex = this.lightbox.getEditIndex();
@@ -518,7 +520,7 @@ class Step6Handler {
     
         const steps = [
             { stepNum: 1, title: "Eligibility", storageKey: "stepData_1" },
-            { stepNum: 2, title: "Trust information", storageKey: "stepData_2", labels: ["Trust name", "Trust type", "Trust account number", "Are all beneficiarites Canadian residents?"]  },
+            { stepNum: 2, title: "Trust information", storageKey: "stepData_2", labels: ["Trust name", "Trust type", "Trust account number", "Are all beneficiaries Canadian residents?"]  },
             { stepNum: 3, title: "Representative's information", storageKey: "stepData_3" },
             { stepNum: 4, title: "Type of clearance", storageKey: "stepData_4" },
              { stepNum: 5, title: "Supporting documentation", storageKey: "stepData_5" },
@@ -547,7 +549,6 @@ class Step6Handler {
                legalReps.forEach((rep, index) => {
 
                 if(legalReps.length === 1) {
-                    console.log("only 1 rep")
                     formattedData["Legal representative name"] = rep.name || "N/A";
                     formattedData["Legal representative mailing address"] = accountInfo.address;
                     formattedData[`Legal representative role`] = rep.role || "N/A";
@@ -556,7 +557,6 @@ class Step6Handler {
                    
                 }
                 else {
-                    console.log("multiple reps")
                     const idx = index + 1;
                     formattedData[`Legal representative ${idx} name`] = rep.name || "N/A";
     
@@ -571,14 +571,16 @@ class Step6Handler {
                 
 
                });
-               console.log(formattedData)
            }
 
          
 
            if (stepNum !== 3) { // Avoid overwriting Step 3 data
                Object.keys(data).forEach((key, index) => {
-                if(stepNum === 2 && key === "address") return;
+                if(stepNum === 2) {
+                    if(key === "address" || key === "flowType")
+                        return;
+                }
 
                    let questionLabel = labels && labels[index] ? labels[index] : this.getLabelForInput(key);
                    formattedData[questionLabel] = data[key]; // Assign label instead of raw key

@@ -248,11 +248,10 @@ class Step3Handler {
 
         this.lvl2repRoles = document.getElementById("s3-reprole-lb");
         this.lvl3repRoles = document.getElementById("s3-lvl3-reprole");
-        const initialFlowType = document.querySelector('input[name="s1q1"]:checked');
+        const initialFlowType = DataManager.getData("accountInfo").flowType;
         if (initialFlowType) {
-            this.updateRoleDropdowns(initialFlowType.id);
+            this.updateRoleDropdowns(initialFlowType);
         }
-
         this.renderInitialView();
         this.setupListeners();
     }
@@ -333,11 +332,12 @@ class Step3Handler {
             testamentary:`<option value="Trustee">Trustee</option>
                <option value="Executor">Executor</option>
                <option value="Liquidator">Liquidator</option>
-               <option value="Administrator">Administrator</option>`
+               <option value="Administrator">Administrator</option>
+               <option value="Other">Other</option>`
         };
         this.lvl2repRoles.innerHTML = '<option value="" selected>(Select)</option>';
         this.lvl3repRoles.innerHTML = '<option value="" selected>(Select)</option>';
-        const selected = flowType === 's1q1-op1' ? 'intervivos' : 'testamentary';
+        const selected = flowType;
        
         this.lvl2repRoles.innerHTML += options[selected];
        this.lvl3repRoles.innerHTML += options[selected];
@@ -574,7 +574,10 @@ class Step6Handler {
 
            if (stepNum !== 3) { // Avoid overwriting Step 3 data
                Object.keys(data).forEach((key, index) => {
-                if(stepNum === 2 && key === "address") return;
+                if(stepNum === 2) {
+                    if(key === "address" || key === "flowType")
+                        return;
+                }
 
                    let questionLabel = labels && labels[index] ? labels[index] : this.getLabelForInput(key);
                    formattedData[questionLabel] = data[key]; // Assign label instead of raw key

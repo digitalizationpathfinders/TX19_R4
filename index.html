@@ -468,7 +468,7 @@
                                 <label for="s4q1-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s4q1-op3" name="s4q1" value="No, I have not submitted any" data-toggle="alert-warnsubdoc">
+                                <input type="radio" id="s4q1-op3" name="s4q1" value="No, I have not submitted any" data-toggle="alert-warnsubdoc-all">
                                 <label for="s4q1-op3"></label>
                             </div>
                         </fieldset>
@@ -476,15 +476,15 @@
                             <legend class="required-label">
                                 How were the documents submitted?</legend>
                             <div class="group">
-                                <input type="radio" id="s4q2-op1" name="s4q2" value="Mail or fax" data-toggle="s4q3-fieldset,alert-warnsubdoc">
+                                <input type="radio" id="s4q2-op1" name="s4q2" value="Mail or fax" data-toggle="s4q3-fieldset">
                                 <label for="s4q2-op1"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s4q2-op2" name="s4q2" value="Electronically" data-toggle="s4q3-fieldset, alert-warnsubdoc">
+                                <input type="radio" id="s4q2-op2" name="s4q2" value="Electronically" data-toggle="s4q3-fieldset">
                                 <label for="s4q2-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s4q2-op3" name="s4q2" value="Both" data-toggle="s4q3-fieldset, alert-warnsubdoc">
+                                <input type="radio" id="s4q2-op3" name="s4q2" value="Both" data-toggle="s4q3-fieldset">
                                 <label for="s4q2-op3"></label>
                             </div>
                         </fieldset>
@@ -495,7 +495,7 @@
                             <input class="half-width" type="text" id="s4q3-field" name="s4q3">
                         </fieldset>
                         <br>
-                        <div class="alert hidden" id="alert-warnsubdoc">
+                        <div class="alert hidden" id="alert-warnsubdoc-some">
                             <div class="alert-warning">
                                 <div class="line"></div>
                                 <div><span class="material-icons">
@@ -506,6 +506,19 @@
                             </div>
                             <div class="alert-content">
                                 After you submit your request for a clearance certificate, you <strong>must</strong> upload the remaining supporting documents listed above using the "Submit supporting documents" button found on the confirmation page.
+                            </div>
+                        </div>
+                        <div class="alert hidden" id="alert-warnsubdoc-all">
+                            <div class="alert-warning">
+                                <div class="line"></div>
+                                <div><span class="material-icons">
+                                    warning
+                                    </span>
+                                </div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="alert-content">
+                                After you submit your request for a clearance certificate, you <strong>must</strong> upload all supporting documents listed above using the "Submit supporting documents" button found on the confirmation page.
                             </div>
                         </div>
                         <div class="alert hidden" id="alert-infosubdoc">

@@ -403,10 +403,14 @@ class Step4Handler {
         this.submittedDocsRadios.forEach(radio => {
 
             radio.addEventListener("change", () => {
+               
                 if (radio.id === 's4q1-op1')
-                    this.addDataToggles("alert-warnsubdoc", "alert-infosubdoc")
+                    this.addDataToggles("alert-infosubdoc")
+                else if(radio.id === "s4q1-op2"){
+                    this.addDataToggles("alert-warnsubdoc-some")
+                }
                 else
-                    this.addDataToggles("alert-infosubdoc", "alert-warnsubdoc")
+                    this.addDataToggles("alert-warnsubdoc-all")
             })
         })
         this.haveSubmittedAllDocuments = document.getElementById("s4q1-op1");
@@ -415,9 +419,10 @@ class Step4Handler {
         });
     }
 
-    addDataToggles(oldToggle, newToggle) {
-
+    addDataToggles(newToggle) {
+        
         this.submissionMethodRadios.forEach(radio => {
+            const oldToggle = console.log(radio.getAttribute("data-toggle"))
             var currentToggle = radio.getAttribute("data-toggle").toString();
 
             var newToggleStr = currentToggle.replace(oldToggle, newToggle);
@@ -533,7 +538,10 @@ class Step5Handler {
 
             if (stepNum !== 2) { // Avoid overwriting Step 3 data
                 Object.keys(data).forEach((key, index) => {
-                    if (stepNum === 2 && key === "address") return;
+                    if(stepNum === 2) {
+                        if(key === "address" || key === "flowType")
+                        return;
+                    }
                     let questionLabel = labels && labels[index] ? labels[index] : this.getLabelForInput(key);
                     formattedData[questionLabel] = data[key]; // Assign label instead of raw key
 
