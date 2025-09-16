@@ -545,15 +545,15 @@
                                 Have you submitted all the documents above?
                             </legend>
                             <div class="group">
-                                <input type="radio" id="s5q1-op1" name="s5q1" value="Yes" data-toggle="s5q2-fieldset">
+                                <input type="radio" id="s5q1-op1" name="s5q1" value="Yes" data-toggle="s5q2-fieldset, alert-infosubdoc">
                                 <label for="s5q1-op1"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q1-op2" name="s5q1" value="No, but I have submitted at least one" data-toggle="s5q2-fieldset">
+                                <input type="radio" id="s5q1-op2" name="s5q1" value="No, but I have submitted at least one" data-toggle="s5q2-fieldset, alert-warnsubdoc-some">
                                 <label for="s5q1-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q1-op3" name="s5q1" value="No, I have not submitted any" data-toggle="alert-warnsubdoc">
+                                <input type="radio" id="s5q1-op3" name="s5q1" value="No, I have not submitted any" data-toggle="alert-warnsubdoc-all">
                                 <label for="s5q1-op3"></label>
                             </div>
                         </fieldset>
@@ -561,15 +561,15 @@
                             <legend class="required-label">
                                 How were the documents submitted?</legend>
                             <div class="group">
-                                <input type="radio" id="s5q2-op1" name="s5q2" value="Mail or fax" data-toggle="s5q3-fieldset, alert-warnsubdoc">
+                                <input type="radio" id="s5q2-op1" name="s5q2" value="Mail or fax" data-toggle="s5q3-fieldset">
                                 <label for="s5q2-op1"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q2-op2" name="s5q2" value="Electronically" data-toggle="s5q3-fieldset, alert-warnsubdoc">
+                                <input type="radio" id="s5q2-op2" name="s5q2" value="Electronically" data-toggle="s5q3-fieldset">
                                 <label for="s5q2-op2"></label>
                             </div>
                             <div class="group">
-                                <input type="radio" id="s5q2-op3" name="s5q2" value="Both" data-toggle="s5q3-fieldset, alert-warnsubdoc">
+                                <input type="radio" id="s5q2-op3" name="s5q2" value="Both" data-toggle="s5q3-fieldset">
                                 <label for="s5q2-op3"></label>
                             </div>
                         </fieldset>
@@ -580,7 +580,20 @@
                             <input class="half-width" type="text" id="s5q3-field" name="s5q3">
                         </fieldset>
                 <br>
-                        <div class="alert hidden" id="alert-warnsubdoc">
+                <div class="alert hidden" id="alert-warnsubdoc-all">
+                            <div class="alert-warning">
+                                <div class="line"></div>
+                                <div><span class="material-icons">
+                                    warning
+                                    </span>
+                                </div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="alert-content">
+                                After you submit your request for a clearance certificate, you <strong>must</strong> upload all supporting documents listed above using the "Submit supporting documents" button found on the confirmation page.
+                            </div>
+                        </div>
+                        <div class="alert hidden" id="alert-warnsubdoc-some">
                             <div class="alert-warning">
                                 <div class="line"></div>
                                 <div><span class="material-icons">

@@ -136,12 +136,7 @@ class Stepper {
                 dataObj[windupField.name] = windupField.value;
             }
         }
-        if (stepNum === 5) {
-            let step4Handler = this.stepHandlers[stepNum]; 
-            if (step4Handler && step4Handler.documentsTable) {
-                dataObj["uploadedDocuments"] = step4Handler.documentsTable.rows;
-            }
-        }
+       
     
         DataManager.saveData(`stepData_${stepNum}`, dataObj);
     }
@@ -457,21 +452,21 @@ class Step4Handler {
 }
 class Step5Handler {
     constructor() {
-        this.submissionMethodRadios = document.querySelectorAll("#s5q2-fieldset input[type=radio]");
-        this.submittedDocsRadios = document.querySelectorAll("#s5q1-fieldset input[type=radio]");
-        this.submittedDocsRadios.forEach(radio => {
+        // this.submissionMethodRadios = document.querySelectorAll("#s5q2-fieldset input[type=radio]");
+        // this.submittedDocsRadios = document.querySelectorAll("#s5q1-fieldset input[type=radio]");
+        // this.submittedDocsRadios.forEach(radio => {
             
-            radio.addEventListener("change", ()=>{
-                if(radio.id === 's5q1-op1')
-                    this.addDataToggles("alert-warnsubdoc", "alert-infosubdoc")
-                else 
-                   this.addDataToggles("alert-infosubdoc", "alert-warnsubdoc")
-            })
-        })
-        this.haveSubmittedAllDocuments = document.getElementById("s5q1-op1");
-        this.haveSubmittedAllDocuments.addEventListener("click", ()=>{
-            this.addDataToggles();
-        });
+        //     radio.addEventListener("change", ()=>{
+        //         if(radio.id === 's5q1-op1')
+        //             this.addDataToggles("alert-warnsubdoc", "alert-infosubdoc")
+        //         else 
+        //            this.addDataToggles("alert-infosubdoc", "alert-warnsubdoc")
+        //     })
+        // })
+        // this.haveSubmittedAllDocuments = document.getElementById("s5q1-op1");
+        // this.haveSubmittedAllDocuments.addEventListener("click", ()=>{
+        //     this.addDataToggles();
+        // });
     }
 
     addDataToggles(oldToggle, newToggle){

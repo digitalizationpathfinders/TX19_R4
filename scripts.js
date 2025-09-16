@@ -398,38 +398,39 @@ class Step3Handler {
 
 class Step4Handler {
     constructor() {
-        this.submissionMethodRadios = document.querySelectorAll("#s4q2-fieldset input[type=radio]");
-        this.submittedDocsRadios = document.querySelectorAll("#s4q1-fieldset input[type=radio]");
-        this.submittedDocsRadios.forEach(radio => {
+        // this.submissionMethodRadios = document.querySelectorAll("#s4q2-fieldset input[type=radio]");
+        // this.submittedDocsRadios = document.querySelectorAll("#s4q1-fieldset input[type=radio]");
+        // this.submittedDocsRadios.forEach(radio => {
 
-            radio.addEventListener("change", () => {
+        //     radio.addEventListener("change", () => {
                
-                if (radio.id === 's4q1-op1')
-                    this.addDataToggles("alert-infosubdoc")
-                else if(radio.id === "s4q1-op2"){
-                    this.addDataToggles("alert-warnsubdoc-some")
-                }
-                else
-                    this.addDataToggles("alert-warnsubdoc-all")
-            })
-        })
-        this.haveSubmittedAllDocuments = document.getElementById("s4q1-op1");
-        this.haveSubmittedAllDocuments.addEventListener("click", () => {
-            this.addDataToggles();
-        });
+        //         if (radio.id === 's4q1-op1')
+        //             this.addDataToggles("alert-infosubdoc")
+        //         else if(radio.id === "s4q1-op2"){
+        //             this.addDataToggles("alert-warnsubdoc-some")
+        //         }
+        //         else
+        //             this.addDataToggles("alert-warnsubdoc-all")
+        //     })
+        // })
+        // this.haveSubmittedAllDocuments = document.getElementById("s4q1-op1");
+        // this.haveSubmittedAllDocuments.addEventListener("click", () => {
+        //     this.addDataToggles();
+        // });
     }
 
     addDataToggles(newToggle) {
         
         this.submissionMethodRadios.forEach(radio => {
-            const oldToggle = console.log(radio.getAttribute("data-toggle"))
+            var oldToggle = radio.getAttribute("data-toggle").toString();
+            
+             if (oldToggle)
+                document.getElementById(oldToggle).classList.add("hidden");
             var currentToggle = radio.getAttribute("data-toggle").toString();
-
             var newToggleStr = currentToggle.replace(oldToggle, newToggle);
 
             radio.setAttribute("data-toggle", newToggleStr)
-            if (oldToggle)
-                document.getElementById(oldToggle).classList.add("hidden");
+           
 
 
         })
